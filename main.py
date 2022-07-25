@@ -107,8 +107,8 @@ if __name__ == "__main__":
     model.eval()  # eval mode (batchnorm uses moving mean/variance instead of mini-batch mean/variance)
 
     # prediction
-    predicted = model(x_test.float())
-    predicted = predicted.detach().numpy()
+    predicted = model(x_test.float().to(device))
+    predicted = predicted.detach().cpu().numpy()
     y_test = y_test.detach().numpy()
     fig, (ax1, ax2) = plt.subplots(1, 2)
     ax1.scatter(y_test[:, 0], predicted[:, 0],color ="red")
@@ -197,8 +197,8 @@ if __name__ == "__main__":
                 loss_each_epochs.append(loss.item())
 
     # prediction
-    predicted = model2(x_test.float())
-    predicted = predicted.detach().numpy()
+    predicted = model2(x_test.float().to(device))
+    predicted = predicted.detach().cpu().numpy()
     y_test = y_test.detach().numpy()
     fig2, (ax1, ax2) = plt.subplots(1, 2)
     ax1.scatter(y_test[:, 0], predicted[:, 0],color ="red")
