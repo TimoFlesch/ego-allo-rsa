@@ -41,11 +41,9 @@ y_test = input_label(start_poke_coordinate, target_poke_coordinate,
                      label_type, "Cartesian")
 x_test = np.expand_dims(x_test, axis = 3)
 
-
-print(y_test)
 y_train = fit_transform(y_train, 'Cartesian')
 y_test = fit_transform(y_test, 'Cartesian')
-print(y_test)
+
 
 def create_cnn(width, height, depth, filters=(16, 32, 64), regress=False):
     # initialize the input shape and channel dimension, assuming
@@ -64,13 +62,7 @@ def create_cnn(width, height, depth, filters=(16, 32, 64), regress=False):
             f, (3, 3), padding="same", activation="relu")(x)
         x = keras.layers.MaxPooling2D(pool_size=(2, 2))(x)
     
-    # x = keras.layers.Conv2D(
-    #         64, (3, 3), padding="same", activation="relu")(x)
-    # x = keras.layers.Conv2D(
-    #         64, (3, 3), padding="same", activation="relu")(x)
-    # x = keras.layers.Conv2D(
-    #         64, (3, 3), padding="same", activation="relu")(x)
-    # x = keras.layers.MaxPooling2D(pool_size=(2, 2))(x)
+
 
     x = keras.layers.Dropout(0.25)(x)
     x = keras.layers.Flatten()(x)
@@ -90,11 +82,11 @@ def plot_history(history):
     plt.figure()
     plt.xlabel('Epoch')
     plt.ylabel('Mean Abs Error')
-    plt.plot(hist['epoch'], hist['mean_absolute_error'],
+    plt.plot(hist['epoch'], hist['mae'],
              label='Train Error')
-    plt.plot(hist['epoch'], hist['val_mean_absolute_error'],
+    plt.plot(hist['epoch'], hist['val_mae'],
              label='Val Error')
-    plt.ylim([0, np.max([hist['val_mean_absolute_error'], hist['mean_absolute_error']])])
+    plt.ylim([0, np.max([hist['val_mae'], hist['mae']])])
     plt.title(title + '    Mean Abs Error')
     plt.legend()
     # plt.savefig(save_name + '_mae.png')
@@ -102,11 +94,11 @@ def plot_history(history):
     plt.figure()
     plt.xlabel('Epoch')
     plt.ylabel('Mean Square Error')
-    plt.plot(hist['epoch'], hist['mean_squared_error'],
+    plt.plot(hist['epoch'], hist['mse'],
              label='Train Error')
-    plt.plot(hist['epoch'], hist['val_mean_squared_error'],
+    plt.plot(hist['epoch'], hist['val_mse'],
              label='Val Error')
-    plt.ylim([0, np.max([hist['val_mean_squared_error'], hist['mean_squared_error']])])
+    plt.ylim([0, np.max([hist['val_mse'], hist['mse']])])
     plt.title(title + '    Mean Square Error')
     plt.legend()
     # plt.savefig(save_name + '_mse.png')
