@@ -9,7 +9,7 @@ import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from multiprocessing import Process
 
-from utils.start_tensorboard import run_tensorboard
+# from utils.start_tensorboard import run_tensorboard
 from models.seq2seq_ConvLSTM import EncoderDecoderConvLSTM
 from data.MovingMNIST import MovingMNIST
 
@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--lr', default=1e-4, type=float, help='learning rate')
 parser.add_argument('--beta_1', type=float, default=0.9, help='decay rate 1')
 parser.add_argument('--beta_2', type=float, default=0.98, help='decay rate 2')
-parser.add_argument('--batch_size', default=12, type=int, help='batch size')
+parser.add_argument('--batch_size', default=4, type=int, help='batch size')
 parser.add_argument('--epochs', type=int, default=300, help='number of epochs to train for')
 parser.add_argument('--use_amp', default=False, type=bool, help='mixed-precision training')
 parser.add_argument('--n_gpus', type=int, default=1, help='number of GPUs')
@@ -177,7 +177,7 @@ def run_trainer():
 if __name__ == '__main__':
     p1 = Process(target=run_trainer)                    # start trainer
     p1.start()
-    p2 = Process(target=run_tensorboard(new_run=True))  # start tensorboard
-    p2.start()
+    # p2 = Process(target=run_tensorboard(new_run=True))  # start tensorboard
+    # p2.start()
     p1.join()
-    p2.join()
+    # p2.join()
