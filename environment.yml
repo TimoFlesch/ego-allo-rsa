@@ -1,57 +1,19 @@
 name: rnn
 channels:
   - defaults
-  - conda-forge
 dependencies:
-  - absl-py=0.11.0
-  - astor=0.8.1
-  - blas=1.0=mkl
-  - c-ares=1.17.1
-  - ca-certificates=2021.1.19
-  - certifi=2020.12.5
-  - coverage=5.4
-  - cython=0.29.21
-  - gast=0.4.0
-  - google-pasta=0.2.0
-  - grpcio=1.35.0
-  - h5py=2.10.0
-  - hdf5=1.10.6
-  - importlib-metadata=2.0.0
-  - intel-openmp
-  - keras-applications=1.0.8
-  - keras-preprocessing=1.1.2
-  # - libcxx=10.0.0
-  # - libedit=3.1.20191231
-  - libffi=3.3
-  # - libgfortran
-  - libprotobuf=3.14.0
-  - markdown=3.3.3
-  - mkl
-  - mkl-service=2.3.0
-  - mkl_fft=1.2.1
-  - mkl_random=1.1.1
-  # - ncurses
-  - numpy=1.19.2
-  - numpy-base=1.19.2
-  - openssl=1.1.1
-  - pip=21.0.1
-  - protobuf=3.14.0
-  - python=3.6.12
-  - python_abi=3.6
-  # - readline
-  - scipy=1.5.2
-  - setuptools=52.0.0
-  - six=1.15.0
-  - sqlite=3.33.0
-  - tensorboard=1.14.0
-  - tensorflow=1.14.0
-  - tensorflow-base=1.14.0
-  - tensorflow-estimator=1.14.0
-  - termcolor=1.1.0
-  - tk=8.6.10
-  - werkzeug=1.0.1
-  - wheel=0.36.2
-  - wrapt=1.12.1
-  - xz=5.2.5
-  - zipp=3.4.0
-  - zlib=1.2.11
+  - python=3.9
+  - cudatoolkit=11.6
+  - pytorch
+  - torchvision
+  - torchaudio
+  - cudnn=8.1.0
+  - seaborn
+  - scikit-learn
+  - matplotlib
+  - scikit-learn-intelex
+  - moviepy
+  - opencv
+  - pytorch-lightning
+  - pip
+prefix: C:\Users\Timo\anaconda3\envs\rnn
