@@ -97,7 +97,7 @@ def plot_history(history):
     plt.ylim([0, np.max([hist['val_mean_absolute_error'], hist['mean_absolute_error']])])
     plt.title(title + '    Mean Abs Error')
     plt.legend()
-    plt.savefig(save_name + '_mae.png')
+    # plt.savefig(save_name + '_mae.png')
 
     plt.figure()
     plt.xlabel('Epoch')
@@ -109,7 +109,7 @@ def plot_history(history):
     plt.ylim([0, np.max([hist['val_mean_squared_error'], hist['mean_squared_error']])])
     plt.title(title + '    Mean Square Error')
     plt.legend()
-    plt.savefig(save_name + '_mse.png')
+    # plt.savefig(save_name + '_mse.png')
     plt.show()
 
 
@@ -148,7 +148,7 @@ plt.title(title + '    X ')
 plt.xlim([0, 1])
 plt.ylim([0, 1])
 _ = plt.plot([0, 1], [0, 1])
-plt.savefig(save_name + '_x.png')
+# plt.savefig(save_name + '_x.png')
 plt.show()
 
 
@@ -164,5 +164,5 @@ plt.title(title + '    Y ')
 plt.xlim([0, 1])
 plt.ylim([0, 1])
 _ = plt.plot([0, 1], [0, 1])
-plt.savefig(save_name + '_y.png')
+# plt.savefig(save_name + '_y.png')
 plt.show()
