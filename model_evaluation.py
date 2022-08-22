@@ -20,7 +20,7 @@ from PIL import Image
 import seaborn as sns
 import math
 pi = math.pi
-from model import ConvNet
+from models.model import ConvNet
 from utils import plot_weights, fit_transform, front_frame, input_frame, input_label, occlusion, RSA_predict
 
 
@@ -183,11 +183,11 @@ def occlusion(model, image = "input/image.png", occ_size = 50, occ_stride = 50, 
 def rsa_visualization(rsa, label_type):
     
     if label_type == "Polar":
-        save_name = "/Users/wen/repos/rnn_sc_wc/output/RSA_SC-SC_SC-WC_polar"
+        save_name = "./figures/RSA_SC-SC_SC-WC_polar"
         fig, (ax1, ax2) = plt.subplots(1, 2)
         fig.set_figheight(5)
         fig.set_figwidth(12)
-        fig.suptitle('Comparasion between SC-SC model and SC-WC model', fontsize = 16)
+        fig.suptitle('Comparison between SC-SC model and SC-WC model', fontsize = 16)
         img = ax1.imshow(rsa[0])
         plt.colorbar(img, ax = ax1)
         ax1.set_title('Predict Theta value')
@@ -206,11 +206,11 @@ def rsa_visualization(rsa, label_type):
         ax2.set_yticklabels(['2pi', '3pi/2', 'pi', 'pi/2', '0'])
         plt.show()
     elif label_type == "Cartesian":
-        save_name = "/Users/wen/repos/rnn_sc_wc/output/RSA_SC-SC_SC-WC_Carte"
+        save_name = "./figures/RSA_SC-SC_SC-WC_Carte"
         fig, (ax1, ax2) = plt.subplots(1, 2)
         fig.set_figheight(5)
         fig.set_figwidth(12)
-        fig.suptitle('Comparasion between SC-SC model and SC-WC model', fontsize = 16)
+        fig.suptitle('Comparison between SC-SC model and SC-WC model', fontsize = 16)
         img = ax1.imshow(rsa[0])
         plt.colorbar(img, ax = ax1)
         ax1.set_title('Predict X value')
@@ -262,10 +262,10 @@ if __name__ == "__main__":
     print(heatmap)
     imgplot = sns.heatmap(heatmap, xticklabels=False, yticklabels=False)
     figure = imgplot.get_figure()    
-    figure.savefig('svm_conf.png', dpi=400)
+    figure.savefig('./figures/svm_conf.png', dpi=400)
     
 # ---------------------------------------------------------------------------- #
 #                                 RSA analysis                                 #
 # ---------------------------------------------------------------------------- #
-    # rsa = RSA_predict(model, model2)
-    # rsa_visualization(rsa, "Cartesian")
+    rsa = RSA_predict(model, model2)
+    rsa_visualization(rsa, "Cartesian")
