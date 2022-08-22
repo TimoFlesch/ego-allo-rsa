@@ -22,27 +22,28 @@ from tensorflow import keras
 # training data preperation
 from utils import fit_transform, front_frame, input_frame, input_label
 
+coord_type = "Cartesian"
 input_type = "WC"
 label_type = "SC"
 title = "Input type: "+input_type + " Label type: "+label_type
-save_name = "/Users/wen/repos/rnn_sc_wc/image/input_"+input_type + "_label_"+label_type+"_Polar"
+save_name = "./figures/cnn_keras_input_"+input_type + "_label_"+label_type+"_"+coord_type
 
 frames, start_poke_coordinate, target_poke_coordinate = front_frame(
     random_seed=20, frame_amount=5000)
 x_train = input_frame(frames, input_type, start_poke_coordinate)
 y_train = input_label(start_poke_coordinate, target_poke_coordinate,
-                      label_type, "Cartesian")
+                      label_type, coord_type)
 x_train = np.expand_dims(x_train, axis = 3)
 
 frames, start_poke_coordinate, target_poke_coordinate = front_frame(
     random_seed=30, frame_amount=500)
 x_test = input_frame(frames, input_type, start_poke_coordinate)
 y_test = input_label(start_poke_coordinate, target_poke_coordinate,
-                     label_type, "Cartesian")
+                     label_type, coord_type)
 x_test = np.expand_dims(x_test, axis = 3)
 
-y_train = fit_transform(y_train, 'Cartesian')
-y_test = fit_transform(y_test, 'Cartesian')
+y_train = fit_transform(y_train, coord_type)
+y_test = fit_transform(y_test, coord_type)
 
 
 def create_cnn(width, height, depth, filters=(16, 32, 64), regress=False):
@@ -89,7 +90,7 @@ def plot_history(history):
     plt.ylim([0, np.max([hist['val_mae'], hist['mae']])])
     plt.title(title + '    Mean Abs Error')
     plt.legend()
-    # plt.savefig(save_name + '_mae.png')
+    plt.savefig(save_name + '_mae.png')
 
     plt.figure()
     plt.xlabel('Epoch')
@@ -101,7 +102,7 @@ def plot_history(history):
     plt.ylim([0, np.max([hist['val_mse'], hist['mse']])])
     plt.title(title + '    Mean Square Error')
     plt.legend()
-    # plt.savefig(save_name + '_mse.png')
+    plt.savefig(save_name + '_mse.png')
     plt.show()
 
 
@@ -140,7 +141,7 @@ plt.title(title + '    X ')
 plt.xlim([0, 1])
 plt.ylim([0, 1])
 _ = plt.plot([0, 1], [0, 1])
-# plt.savefig(save_name + '_x.png')
+plt.savefig(save_name + '_x.png')
 plt.show()
 
 
@@ -156,5 +157,5 @@ plt.title(title + '    Y ')
 plt.xlim([0, 1])
 plt.ylim([0, 1])
 _ = plt.plot([0, 1], [0, 1])
-# plt.savefig(save_name + '_y.png')
+plt.savefig(save_name + '_y.png')
 plt.show()
