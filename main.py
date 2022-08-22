@@ -8,8 +8,8 @@ FilePath: /rnn_sc_wc/main.py
 '''
 import torch 
 import torch.nn as nn
-import torchvision
-import torchvision.transforms as transforms
+# import torchvision
+# import torchvision.transforms as transforms
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     output_type= "SC"
     label_type = "Cartesian"
     title = "Input type: "+input_type + " Label type: "+output_type
-    save_name = "/Users/wen/repos/rnn_sc_wc/output/input_"+input_type + "_label_"+output_type+"_Cartesian"
+    save_name = "./figures/cnn_pytorch_input_"+input_type + "_label_"+output_type+"_Cartesian"
 
     frames, start_poke_coordinate, target_poke_coordinate = front_frame(
         random_seed=20, frame_amount=5000)
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     # plt.legend()
     _ = ax2.plot([0, 1], [0, 1])
     plt.suptitle("Original vs Predicted values: SC-SC")
-    # plt.savefig(save_name + '_x.png', dpi=400)
+    plt.savefig(save_name + '_x.png', dpi=400)
     plt.show()
     
     
@@ -134,11 +134,11 @@ if __name__ == "__main__":
     batch_size = 32
     learning_rate = 0.001
 
-    input_type = "WC"
+    input_type = "SC"
     output_type = "SC"
     label_type = "Cartesian"
     title = "Input type: "+input_type + " Label type: "+output_type
-    save_name = "/Users/wen/repos/rnn_sc_wc/output/input_"+input_type + "_label_"+output_type+"_"+label_type
+    save_name = "./figures/cnn_pytorch_input_"+input_type + "_label_"+output_type+"_"+label_type
 
     frames, start_poke_coordinate, target_poke_coordinate = front_frame(
         random_seed=20, frame_amount=5000)
@@ -208,7 +208,7 @@ if __name__ == "__main__":
     ax2.set_title("Original vs. Predicted:  Y ")
     # plt.legend()
     _ = ax2.plot([0, 1], [0, 1])
-    # plt.savefig(save_name + '_x.png', dpi=400)
+    plt.savefig(save_name + '_x.png', dpi=400)
     plt.show()
 
     # ---------------------------------------------------------------------------- #
