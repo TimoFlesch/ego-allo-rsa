@@ -1,15 +1,15 @@
 import math
-import numpy as np
-from numpy import random
+from typing import Tuple
+
+import cv2
 import matplotlib.pyplot as plt
-from tensorflow.python.keras import backend as K
+import numpy as np
 import seaborn as sns
 import torch
 import torch.nn as nn
-import torchvision.transforms as T
 from moviepy.editor import ImageSequenceClip
-import cv2
-from typing import Tuple, Union
+from numpy import random
+from tensorflow.python.keras import backend as K
 
 
 def random_poke_generator(num_element=5, poke_size=3):
@@ -569,7 +569,7 @@ def example_gif_generate():
     label_type = "WC"  # noqa F841
     frames, start_poke_coordinate, target_poke_coordinate = ordered_front_frame()
     frames = input_frame(frames, input_type, start_poke_coordinate)
-    frames = abs((1 - frames)) * 1000
+    frames = abs(1 - frames) * 1000
     new_frames = np.zeros((len(frames), 500, 500))
     for i in range(len(frames)):
         new_frames[i] = cv2.resize(

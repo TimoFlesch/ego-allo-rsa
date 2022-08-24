@@ -4,7 +4,7 @@ import numpy as np
 from torchvision import datasets, transforms
 
 
-class MovingMNIST(object):
+class MovingMNIST:
 
     """Data Handler that creates Bouncing MNIST dataset on the fly."""
 

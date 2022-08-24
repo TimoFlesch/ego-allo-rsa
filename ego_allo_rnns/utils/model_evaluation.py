@@ -7,23 +7,18 @@ Description: In User Settings Edit
 FilePath: /rnn_sc_wc/model_evaluation.py
 """
 
-import matplotlib.pyplot as plt
-import numpy as np
-import torch
-import torch.nn as nn
-
-import torchvision.transforms as transforms
-import seaborn as sns
 import math
 
-from models.model import ConvNet
-from utils.utils import (
-    front_frame,
-    input_frame,
-    input_label,
-    occlusion,
-    RSA_predict,
-)
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import torch
+import torch.nn as nn
+import torchvision.transforms as transforms
+from utils.utils import (RSA_predict, front_frame, input_frame, input_label,
+                         occlusion)
+
+from ego_allo_rnns.models.ffwd import ConvNet
 
 pi = math.pi
 

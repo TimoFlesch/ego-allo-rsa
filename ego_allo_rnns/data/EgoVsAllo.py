@@ -1,10 +1,10 @@
+from typing import Tuple, Union
 
+import numpy as np
 import torch
 import torchvision.transforms as T
-import numpy as np
-from typing import Union, Tuple
 from utils.utils import front_frame, input_frame, input_label
-
+from typing import Tuple
 
 def make_datasets(
     size_ds: Union[None, int] = None,
@@ -14,7 +14,7 @@ def make_datasets(
     n_test: int = 200,
     random_seed: int = 20,
     n_frames: int = 11,
-    target_frame: int = (4, 4),
+    target_frame: Tuple[int, int] = (4, 4),
 ) -> Tuple[torch.tensor, torch.tensor]:
     """generates training and test datasets
 

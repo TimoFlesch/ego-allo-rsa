@@ -1,9 +1,8 @@
-from data.EgoVsAllo import make_datasets
-from models.rnns import RNN
-from configs.rnn import cfg
+from ego_allo_rnns.configs.rnn import cfg  # noqa F401
+from ego_allo_rnns.data.EgoVsAllo import make_datasets  # noqa F401
+from ego_allo_rnns.models.rnns import RNN  # noqa F401
 
 if __name__ == "__main__":
-
 
     # create checkpoint directory
 
@@ -13,10 +12,11 @@ if __name__ == "__main__":
 
     # instantiate model (and send to device)
 
-    # instantiate optimiser 
+    # instantiate optimiser
 
-    # instantiate logger 
+    # instantiate logger
 
     # launch training loop
 
     # eval model
+    pass

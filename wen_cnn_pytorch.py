@@ -6,18 +6,17 @@ LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /rnn_sc_wc/main.py
 """
-import torch
-import torch.nn as nn
-
+import matplotlib.pyplot as plt
 # import torchvision
 # import torchvision.transforms as transforms
 import numpy as np
-import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
 
+from ego_allo_rnns.models.ffwd import ConvNet
 # training data preperation
-from utils.utils import fit_transform, front_frame, input_frame, input_label
-from models.ffwd import ConvNet
-
+from ego_allo_rnns.utils.utils import (fit_transform, front_frame, input_frame,
+                                       input_label)
 
 if __name__ == "__main__":
     # Device configuration
