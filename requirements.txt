@@ -53,7 +53,7 @@ opt-einsum
 # packaging==21.3
 pandas==1.4.3
 Pillow==9.2.0
-pip==22.2
+# pip==22.2
 # ply==3.11
 # proglog==0.1.9
 # protobuf==3.19
@@ -77,7 +77,7 @@ scikit-learn==1.1.1
 # scikit-learn-intelex==2021.20220215.102710
 scipy==1.7.3
 seaborn==0.11.2
-setuptools==61.2.0
+# setuptools==61.2.0
 # sip==6.6.2
 # six==1.16.0
 tensorboard

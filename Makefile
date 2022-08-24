@@ -1,4 +1,4 @@
-package_name = ego_allo_rsa
+package_name = ego_allo_rnns
 coverage_target = 70
 max_line_length = 120
 
