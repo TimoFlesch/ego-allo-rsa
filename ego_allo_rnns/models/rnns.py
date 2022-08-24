@@ -12,7 +12,8 @@ class RNN(nn.Module):
             hidden_size (int, optional): number of hidden units. Defaults to 100.
             output_size (int, optional): number of output units. Defaults to 2.
             nonlinearity (str, optional): nonlinearity in the hidden layer. Defaults to "tanh".
-            device (torch.device, optional): device to run code on (either gpu or cpu). Defaults to torch.device("cuda" if torch.cuda.is_available() else "cpu").
+            device (torch.device, optional): device to run code on (either gpu or cpu). Defaults to
+                torch.device("cuda" if torch.cuda.is_available() else "cpu").
 
     """
 
@@ -31,7 +32,8 @@ class RNN(nn.Module):
             hidden_size (int, optional): number of hidden units. Defaults to 100.
             output_size (int, optional): number of output units. Defaults to 2.
             nonlinearity (str, optional): nonlinearity in the hidden layer. Defaults to "tanh".
-            device (torch.device, optional): device to run code on (either gpu or cpu). Defaults to torch.device("cuda" if torch.cuda.is_available() else "cpu").
+            device (torch.device, optional): device to run code on (either gpu or cpu).
+             Defaults to torch.device("cuda" if torch.cuda.is_available() else "cpu").
         """
         super().__init__()
         self.n_inputs = input_size
