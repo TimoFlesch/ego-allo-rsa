@@ -3,7 +3,19 @@ from torch import nn
 
 
 class RNN(nn.Module):
-    def __init__(
+    """recurrent neural network with a single recurrent hidden layer and a linear readout layer.
+    inputs are n_batch x n_frame x n_input streams of pixel intensities where
+    n_input corresponds to the number of pixels in a flattened image and n_frames 
+    to the number of consecutive frames (hence the need for recurrence)
+    Arguments:
+            input_size (int, optional): number of features in individual input frames. Defaults to 10.
+            hidden_size (int, optional): number of hidden units. Defaults to 100.
+            output_size (int, optional): number of output units. Defaults to 2.
+            nonlinearity (str, optional): nonlinearity in the hidden layer. Defaults to "tanh".
+            device (torch.device, optional): device to run code on (either gpu or cpu). Defaults to torch.device("cuda" if torch.cuda.is_available() else "cpu").
+    
+    """
+    def __init__(        
         self,
         input_size: int = 10,
         hidden_size: int = 100,
@@ -11,6 +23,15 @@ class RNN(nn.Module):
         nonlinearity: str = "tanh",
         device=torch.device("cuda" if torch.cuda.is_available() else "cpu"),
     ):
+        """
+
+        Args:
+            input_size (int, optional): number of features in individual input frames. Defaults to 10.
+            hidden_size (int, optional): number of hidden units. Defaults to 100.
+            output_size (int, optional): number of output units. Defaults to 2.
+            nonlinearity (str, optional): nonlinearity in the hidden layer. Defaults to "tanh".
+            device (torch.device, optional): device to run code on (either gpu or cpu). Defaults to torch.device("cuda" if torch.cuda.is_available() else "cpu").
+        """
         super(RNN, self).__init__()
         self.n_inputs = input_size
         self.n_hidden = hidden_size
