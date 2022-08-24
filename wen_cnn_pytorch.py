@@ -15,8 +15,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # training data preperation
-from utils import fit_transform, front_frame, input_frame, input_label
-from models.model import ConvNet
+from utils.utils import fit_transform, front_frame, input_frame, input_label
+from models.ffwd import ConvNet
 
 
 if __name__ == "__main__":

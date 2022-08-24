@@ -14,7 +14,7 @@ import pandas as pd
 from tensorflow import keras
 
 # training data preperation
-from utils import fit_transform, front_frame, input_frame, input_label
+from utils.utils import fit_transform, front_frame, input_frame, input_label
 
 coord_type = "Cartesian"
 input_type = "WC"
