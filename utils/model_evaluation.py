@@ -17,7 +17,7 @@ import seaborn as sns
 import math
 
 from models.model import ConvNet
-from utils import (
+from utils.utils import (
     front_frame,
     input_frame,
     input_label,
