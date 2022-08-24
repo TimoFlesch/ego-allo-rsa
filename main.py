@@ -1,3 +1,6 @@
+from data.EgoVsAllo import make_datasets
+from models.rnns import RNN
+from configs.rnn import cfg
 
 if __name__ == "__main__":
 
