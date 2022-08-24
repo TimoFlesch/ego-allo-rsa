@@ -9,12 +9,17 @@ FilePath: /rnn_sc_wc/CNN_regression_combined.py
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
 # training model construction
 from tensorflow import keras
 
 # training data preperation
-from ego_allo_rnns.utils.utils import (fit_transform, front_frame, input_frame,
-                                       input_label)
+from ego_allo_rnns.utils.utils import (
+    fit_transform,
+    front_frame,
+    input_frame,
+    input_label,
+)
 
 coord_type = "Cartesian"
 input_type = "WC"

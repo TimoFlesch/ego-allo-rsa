@@ -15,8 +15,7 @@ import seaborn as sns
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
-from utils.utils import (RSA_predict, front_frame, input_frame, input_label,
-                         occlusion)
+from utils.utils import RSA_predict, front_frame, input_frame, input_label, occlusion
 
 from ego_allo_rnns.models.ffwd import ConvNet
 
