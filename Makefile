@@ -1,5 +1,5 @@
 package_name = ego_allo_rnns
-coverage_target = 70
+coverage_target = 30
 max_line_length = 120
 
 venv_name = venv
