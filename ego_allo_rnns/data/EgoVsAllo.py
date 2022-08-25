@@ -3,6 +3,7 @@ from typing import Tuple, Union
 import numpy as np
 import torch
 import torchvision.transforms as T
+from torch.utils.data import TensorDataset
 
 from ego_allo_rnns.utils.utils import front_frame, input_frame, input_label
 
@@ -16,7 +17,7 @@ def make_datasets(
     random_seed: int = 20,
     n_frames: int = 11,
     target_frame: Tuple[int, int] = (4, 4),
-) -> Tuple[torch.tensor, torch.tensor]:
+) -> Tuple[TensorDataset, TensorDataset]:
     """generates training and test datasets
 
     Args:
@@ -31,7 +32,7 @@ def make_datasets(
         target_frame (tuple, optional): Frame that shows target. Defaults to U(2,4).
 
     Returns:
-        Tuple[Tuple[torch.tensor, torch.tensor], Tuple[torch.tensor, torch.tensor]]: training and test sets with labels
+        Tuple[TensorDataset, TensorDataset]: training and test sets with labels
     """
     size_ds = size_ds or 100
     resize = T.Resize(
@@ -61,9 +62,14 @@ def make_datasets(
     for i, t in enumerate(targets):
         x_train[i, t, :, :] = x_train_withtarget[i, :, :]
     dims = x_train.shape
-    x_train = x_train.reshape((*dims[:2], dims[-1] ** 2))
-    y_train = input_label(
-        start_poke_coordinate, target_poke_coordinate, output_type, label_type
+    x_train = torch.tensor(
+        x_train.reshape((*dims[:2], dims[-1] ** 2)), dtype=torch.float
+    )
+    y_train = torch.tensor(
+        input_label(
+            start_poke_coordinate, target_poke_coordinate, output_type, label_type
+        ),
+        dtype=torch.float,
     )
 
     # generate test set
@@ -90,9 +96,12 @@ def make_datasets(
         x_test[i, t, :, :] = x_test_withtarget[i, :, :]
 
     dims = x_test.shape
-    x_test = x_test.reshape((*dims[:2], dims[-1] ** 2))
-    y_test = input_label(
-        start_poke_coordinate, target_poke_coordinate, output_type, label_type
+    x_test = torch.tensor(x_test.reshape((*dims[:2], dims[-1] ** 2)), dtype=torch.float)
+    y_test = torch.tensor(
+        input_label(
+            start_poke_coordinate, target_poke_coordinate, output_type, label_type
+        ),
+        dtype=torch.float,
     )
 
-    return (x_train, y_train), (x_test, y_test)
+    return TensorDataset(x_train, y_train), TensorDataset(x_test, y_test)
