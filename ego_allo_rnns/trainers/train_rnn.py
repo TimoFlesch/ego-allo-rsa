@@ -43,6 +43,8 @@ def train_model(
     test_generator = DataLoader(dataset=data[1], batch_size=50, shuffle=True)
     results: Dict[str, np.ndarray] = {}
 
+    model.to(device)
+
     for ep in range(n_epochs):
         # Training
         training_loss = train(
