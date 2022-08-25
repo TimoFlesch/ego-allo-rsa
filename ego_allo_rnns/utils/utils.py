@@ -5,15 +5,17 @@ Modified by: Timo Flesch
 import math
 from typing import Tuple
 
-import cv2
+# import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import torch
 import torch.nn as nn
-from moviepy.editor import ImageSequenceClip
+
+# from moviepy.editor import ImageSequenceClip
 from numpy import random
-from tensorflow.python.keras import backend as K
+
+# from tensorflow.python.keras import backend as K
 
 
 def random_poke_generator(num_element=5, poke_size=3):
@@ -175,18 +177,18 @@ def fit_transform(data, label_type=None):
     return data
 
 
-def distance_error(y_true, y_pred):
-    """
-    Calculate the mean diference between the true points
-    and the predicted points. Each point is represented
-    as a binary vector.
-    """
-    diff = distance_difference(K.argmax(y_true), K.argmax(y_pred))
-    return K.mean(K.cast(K.abs(diff), K.floatx()))
+# def distance_error(y_true, y_pred):
+#     """
+#     Calculate the mean diference between the true points
+#     and the predicted points. Each point is represented
+#     as a binary vector.
+#     """
+#     diff = distance_difference(K.argmax(y_true), K.argmax(y_pred))
+#     return K.mean(K.cast(K.abs(diff), K.floatx()))
 
 
-def distance_error_regression(y_true, y_pred):
-    return K.mean(distance_difference(y_true, y_pred))
+# def distance_error_regression(y_true, y_pred):
+#     return K.mean(distance_difference(y_true, y_pred))
 
 
 def label_unification(type, number):
@@ -568,21 +570,21 @@ def RSA_predict(model_1, model_2):
     return RSA_matrix_x
 
 
-def example_gif_generate():
-    input_type = "WC"
-    label_type = "WC"  # noqa F841
-    frames, start_poke_coordinate, target_poke_coordinate = ordered_front_frame()
-    frames = input_frame(frames, input_type, start_poke_coordinate)
-    frames = abs(1 - frames) * 1000
-    new_frames = np.zeros((len(frames), 500, 500))
-    for i in range(len(frames)):
-        new_frames[i] = cv2.resize(
-            frames[i], dsize=(500, 500), interpolation=cv2.INTER_NEAREST
-        )
-    new_frames = np.expand_dims(new_frames, 3)
-    clip = ImageSequenceClip(list(new_frames), fps=20)
-    clip.write_gif("/Users/wen/repos/rnn_sc_wc/output/test_example.gif", fps=20)
-    pass
+# def example_gif_generate():
+#     input_type = "WC"
+#     label_type = "WC"  # noqa F841
+#     frames, start_poke_coordinate, target_poke_coordinate = ordered_front_frame()
+#     frames = input_frame(frames, input_type, start_poke_coordinate)
+#     frames = abs(1 - frames) * 1000
+#     new_frames = np.zeros((len(frames), 500, 500))
+#     for i in range(len(frames)):
+#         new_frames[i] = cv2.resize(
+#             frames[i], dsize=(500, 500), interpolation=cv2.INTER_NEAREST
+#         )
+#     new_frames = np.expand_dims(new_frames, 3)
+#     clip = ImageSequenceClip(list(new_frames), fps=20)
+#     clip.write_gif("/Users/wen/repos/rnn_sc_wc/output/test_example.gif", fps=20)
+#     pass
 
 
 if __name__ == "__main__":
