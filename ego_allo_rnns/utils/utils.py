@@ -1,3 +1,7 @@
+"""
+Author: Xuan Wen
+Modified by: Timo Flesch
+"""
 import math
 from typing import Tuple
 
