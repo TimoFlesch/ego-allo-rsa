@@ -5,8 +5,8 @@ class TestEgoAlloDataset:
     def test_import_make_dataset(self):
         try:
             from ego_allo_rnns.data.EgoVsAllo import make_datasets  # noqa F401
-        except ImportError:
-            return False
+        except ImportError as e:
+            return pytest.fail(e)
 
     def test_gen_datasets(self):
         from ego_allo_rnns.data.EgoVsAllo import make_datasets
