@@ -10,6 +10,7 @@ from ego_allo_rnns.utils.utils import front_frame, input_frame, input_label
 
 def make_datasets(
     size_ds: Union[None, int] = None,
+    input_type: str = "WC",
     output_type: str = "WC",
     label_type: str = "Cartesian",
     n_train: int = 5000,
@@ -22,6 +23,7 @@ def make_datasets(
 
     Args:
         size_ds (Union[None, int], optional): downsampled size of image in pixels. Defaults to None.
+        input_type (string): WC or SC. Defaults to WC.
         output_type (string): WC or SC. Defaults to WC.
         label_type (string): Cartesian or Polar. Defaults to Cartesian.
         n_train (int, optional): number of training samples. Defaults to 5000.
@@ -44,14 +46,14 @@ def make_datasets(
         random_seed=random_seed, frame_amount=n_train, show_target=False
     )
     x_train_notarget = input_frame(
-        frames, output_type=output_type, start_poke=start_poke_coordinate
+        frames, input_type=input_type, start_poke=start_poke_coordinate
     )
     x_train_notarget = resize(torch.tensor(x_train_notarget)).numpy()
     frames, start_poke_coordinate, target_poke_coordinate = front_frame(
         random_seed=random_seed, frame_amount=n_train, show_target=True
     )
     x_train_withtarget = input_frame(
-        frames, output_type=output_type, start_poke=start_poke_coordinate
+        frames, input_type=input_type, start_poke=start_poke_coordinate
     )
     x_train_withtarget = resize(torch.tensor(x_train_withtarget)).numpy()
 
@@ -77,14 +79,14 @@ def make_datasets(
         random_seed=random_seed, frame_amount=n_test, show_target=False
     )
     x_test_notarget = input_frame(
-        frames, output_type=output_type, start_poke=start_poke_coordinate
+        frames, input_type=input_type, start_poke=start_poke_coordinate
     )
     x_test_notarget = resize(torch.tensor(x_test_notarget)).numpy()
     frames, start_poke_coordinate, target_poke_coordinate = front_frame(
         random_seed=random_seed, frame_amount=n_test, show_target=True
     )
     x_test_withtarget = input_frame(
-        frames, output_type=output_type, start_poke=start_poke_coordinate
+        frames, input_type=input_type, start_poke=start_poke_coordinate
     )
     x_test_withtarget = resize(torch.tensor(x_test_withtarget)).numpy()
 

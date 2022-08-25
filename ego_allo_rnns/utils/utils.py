@@ -75,13 +75,13 @@ def front_frame(
     return frames, start_poke_coordinate, target_poke_coordinate
 
 
-def input_frame(front_frame, output_type, start_poke=None):
+def input_frame(front_frame, input_type, start_poke=None):
     """generate number of frames can be used as input
     attach the front frame to the background frame, which centered at the start poke (SC) or the actual center (WC)
 
     Args:
         front_frame (ndarray): frame_amount * 50 * 50
-        output_type (string): WC or SC
+        input_type (string): WC or SC
         start_poke (ndarray): frame_amount * 2, set to None as default
 
     Returns:
@@ -89,10 +89,10 @@ def input_frame(front_frame, output_type, start_poke=None):
     """
     background_size = 100
     conbined_frame = np.zeros((len(front_frame), background_size, background_size))
-    if output_type == "WC":
+    if input_type == "WC":
         for index in range(0, len(front_frame)):
             conbined_frame[index, 24 : 24 + 50, 24 : 24 + 50] = front_frame[index]
-    elif output_type == "SC" and start_poke.all() is not None:
+    elif input_type == "SC" and start_poke.all() is not None:
         for index in range(0, len(front_frame)):
             # conbined_frame[a, b, c]
             conbined_frame[
