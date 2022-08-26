@@ -1,22 +1,10 @@
-from ego_allo_rnns.configs.rnn import cfg  # noqa F401
-from ego_allo_rnns.data.EgoVsAllo import make_datasets  # noqa F401
-from ego_allo_rnns.models.rnns import RNN  # noqa F401
+from ego_allo_rnns.configs.rnn import cfg_SCSC, cfg_SCWC, cfg_WCSC, cfg_WCWC
+from ego_allo_rnns.trainers.train_rnn import run_training
+from ego_allo_rnns.utils.io import save_training_results
 
 if __name__ == "__main__":
 
-    # create checkpoint directory
-
-    # load config
-
-    # create dataset (and send to device)
-
-    # instantiate model (and send to device)
-
-    # instantiate optimiser
-
-    # instantiate logger
-
-    # launch training loop
-
-    # eval model
-    pass
+    configs = [cfg_WCWC, cfg_WCSC, cfg_SCWC, cfg_SCSC]
+    for cfg in configs:
+        model, results = run_training(cfg)
+        save_training_results(cfg, model, results)

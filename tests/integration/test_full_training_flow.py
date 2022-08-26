@@ -23,10 +23,11 @@ class TestFullTrainingFlow:
         # instantiate model
         rnn = RNN(**cfg_integration_test["architecture"])
 
-        # train and eval model
+        # init optimiser
         optimiser = optim.SGD(
             rnn.parameters(), cfg_integration_test["hyperparams"]["lr"]
         )
+        # train model
         train_model(data, rnn, optimiser, **cfg_integration_test["training"])
 
 

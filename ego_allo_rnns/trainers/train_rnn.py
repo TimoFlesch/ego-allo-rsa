@@ -3,8 +3,37 @@ from typing import Callable, Dict, Tuple
 import numpy as np
 import torch
 from sklearn.metrics import r2_score
+from torch import optim
 from torch.utils.data import DataLoader, TensorDataset
 from torch.utils.tensorboard import SummaryWriter
+
+from ego_allo_rnns.data.EgoVsAllo import make_datasets
+from ego_allo_rnns.models.rnns import RNN
+
+
+def run_training(cfg: dict) -> Tuple[torch.nn.Module, dict]:
+    """wrapper function that loads data, trains model and returns results
+
+    Args:
+        cfg (dict): configuration file
+
+    Returns:
+        Tuple[torch.nn.Module, dict]: trained model and log file
+    """
+    # import data
+    data = make_datasets(**cfg["data"])
+
+    # instantiate model
+    rnn = RNN(**cfg["architecture"])
+
+    # train and eval model
+    optimiser = optim.SGD(rnn.parameters(), cfg["hyperparams"]["lr"])
+    results = train_model(data, rnn, optimiser, **cfg["training"])
+
+    # dump model and results
+    rnn = rnn.to("cpu")
+
+    return rnn, results
 
 
 def train_model(
@@ -18,6 +47,7 @@ def train_model(
     batch_size: int = 256,
     log_interval: int = 1,
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu"),
+    checkpoint_dir: str = None,
 ) -> Dict[str, np.ndarray]:
     """loops over training data and performs SGD on provided model
 
@@ -41,7 +71,12 @@ def train_model(
         dataset=data[0], batch_size=batch_size, shuffle=True
     )
     test_generator = DataLoader(dataset=data[1], batch_size=50, shuffle=True)
-    results: Dict[str, np.ndarray] = {}
+    results: Dict[str, Dict[str, list]] = {
+        "losses": {"training": [], "validation": []},
+        "r_squared": {"training": [], "validation": []},
+    }
+
+    model.to(device)
 
     for ep in range(n_epochs):
         # Training
@@ -62,22 +97,26 @@ def train_model(
                 np.mean(training_loss),
                 (ep + 1) * len(training_generator),
             )
+            results["losses"]["training"].append(np.mean(training_loss))
             writer.add_scalar(
                 "Losses/validation",
                 np.mean(validation_loss),
                 (ep + 1) + len(test_generator),
             )
+            results["losses"]["validation"].append(np.mean(validation_loss))
 
             writer.add_scalar(
                 "R_squared/training",
                 r2_training,
                 (ep + 1) * len(training_generator),
             )
+            results["r_squared"]["training"].append(np.mean(r2_training))
             writer.add_scalar(
                 "R_squared/validation",
                 r2_validation,
                 (ep + 1) + len(test_generator),
             )
+            results["r_squared"]["validation"].append(np.mean(r2_validation))
     print("finished training. yay.")
     return results
 
