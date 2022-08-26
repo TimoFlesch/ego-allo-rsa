@@ -1,23 +1,10 @@
-from torch import optim
-
-from ego_allo_rnns.configs.rnn import cfg_WCWC as cfg
-from ego_allo_rnns.data.EgoVsAllo import make_datasets
-from ego_allo_rnns.models.rnns import RNN
-from ego_allo_rnns.trainers.train_rnn import train_model
-
-
-def run_training():
-    # import data
-    data = make_datasets(**cfg["data"])
-
-    # instantiate model
-    rnn = RNN(**cfg["architecture"])
-
-    # train and eval model
-    optimiser = optim.SGD(rnn.parameters(), cfg["hyperparams"]["lr"])
-    train_model(data, rnn, optimiser, **cfg["training"])
-
+from ego_allo_rnns.configs.rnn import cfg_SCSC, cfg_SCWC, cfg_WCSC, cfg_WCWC
+from ego_allo_rnns.trainers.train_rnn import run_training
+from ego_allo_rnns.utils.io import save_training_results
 
 if __name__ == "__main__":
 
-    run_training()
+    configs = [cfg_WCWC, cfg_WCSC, cfg_SCWC, cfg_SCSC]
+    for cfg in configs:
+        model, results = run_training(cfg)
+        save_training_results(cfg, model, results)
