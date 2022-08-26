@@ -101,7 +101,7 @@ def train_model(
             writer.add_scalar(
                 "Losses/validation",
                 np.mean(validation_loss),
-                (ep + 1) + len(test_generator),
+                (ep + 1) * len(test_generator),
             )
             results["losses"]["validation"].append(np.mean(validation_loss))
 
@@ -114,7 +114,7 @@ def train_model(
             writer.add_scalar(
                 "R_squared/validation",
                 r2_validation,
-                (ep + 1) + len(test_generator),
+                (ep + 1) * len(test_generator),
             )
             results["r_squared"]["validation"].append(np.mean(r2_validation))
     print("finished training. yay.")
