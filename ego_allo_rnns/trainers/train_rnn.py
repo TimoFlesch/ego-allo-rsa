@@ -31,7 +31,7 @@ def run_training(cfg: dict) -> Tuple[torch.nn.Module, dict]:
     results = train_model(data, rnn, optimiser, **cfg["training"])
 
     # dump model and results
-    rnn = rnn.detach().cpu()
+    rnn = rnn.to("cpu")
 
     return rnn, results
 
