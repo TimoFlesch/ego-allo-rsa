@@ -9,26 +9,31 @@ from torch.utils.tensorboard import SummaryWriter
 
 from ego_allo_rnns.data.EgoVsAllo import make_datasets
 from ego_allo_rnns.models.rnns import RNN
+from ego_allo_rnns.utils.config import load_config
 
 
-def run_training(cfg: dict) -> Tuple[torch.nn.Module, dict]:
+def run_training(config: dict = None) -> Tuple[torch.nn.Module, dict]:
     """wrapper function that loads data, trains model and returns results
 
     Args:
-        cfg (dict): configuration file
+        config (dict): configuration file
 
     Returns:
         Tuple[torch.nn.Module, dict]: trained model and log file
     """
+    if config is None:
+        config = load_config("default")
+        print("no config provided, proceeding with default config")
+
     # import data
-    data = make_datasets(**cfg["data"])
+    data = make_datasets(**config["data"])
 
     # instantiate model
-    rnn = RNN(**cfg["architecture"])
+    rnn = RNN(**config["architecture"])
 
     # train and eval model
-    optimiser = optim.SGD(rnn.parameters(), cfg["hyperparams"]["lr"])
-    results = train_model(data, rnn, optimiser, **cfg["training"])
+    optimiser = optim.SGD(rnn.parameters(), config["hyperparams"]["lr"])
+    results = train_model(data, rnn, optimiser, **config["training"])
 
     # dump model and results
     rnn = rnn.to("cpu")
