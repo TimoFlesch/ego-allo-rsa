@@ -76,14 +76,14 @@ def make_datasets(
 
     # generate test set
     frames, start_poke_coordinate, target_poke_coordinate = front_frame(
-        random_seed=random_seed, frame_amount=n_test, show_target=False
+        random_seed=random_seed * 20, frame_amount=n_test, show_target=False
     )
     x_test_notarget = input_frame(
         frames, input_type=input_type, start_poke=start_poke_coordinate
     )
     x_test_notarget = resize(torch.tensor(x_test_notarget)).numpy()
     frames, start_poke_coordinate, target_poke_coordinate = front_frame(
-        random_seed=random_seed, frame_amount=n_test, show_target=True
+        random_seed=random_seed * 20, frame_amount=n_test, show_target=True
     )
     x_test_withtarget = input_frame(
         frames, input_type=input_type, start_poke=start_poke_coordinate
