@@ -47,6 +47,7 @@ def train_model(
     batch_size: int = 256,
     log_interval: int = 1,
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu"),
+    checkpoint_dir: str = None,
 ) -> Dict[str, np.ndarray]:
     """loops over training data and performs SGD on provided model
 
