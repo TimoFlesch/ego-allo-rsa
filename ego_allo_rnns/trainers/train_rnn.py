@@ -12,7 +12,9 @@ from ego_allo_rnns.models.rnns import RNN
 from ego_allo_rnns.utils.config import load_config
 
 
-def run_training(config: dict = None) -> Tuple[torch.nn.Module, dict]:
+def run_training(
+    config: dict = None, config_path: str = "./configs/"
+) -> Tuple[torch.nn.Module, dict]:
     """wrapper function that loads data, trains model and returns results
 
     Args:
@@ -22,7 +24,7 @@ def run_training(config: dict = None) -> Tuple[torch.nn.Module, dict]:
         Tuple[torch.nn.Module, dict]: trained model and log file
     """
     if config is None:
-        config = load_config("default")
+        config = load_config(cfg_id="default", cfg_path=config_path)
         print("no config provided, proceeding with default config")
 
     # import data
