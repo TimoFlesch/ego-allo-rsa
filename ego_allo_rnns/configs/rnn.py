@@ -94,7 +94,7 @@ cfg_WCSC = {
     },
     "architecture": {
         "input_size": 1600,
-        "hidden_size": 10,
+        "hidden_size": 100,
         "nonlinearity": "tanh",
         "output_size": 2,
     },
@@ -122,7 +122,7 @@ cfg_SCWC = {
     },
     "architecture": {
         "input_size": 1600,
-        "hidden_size": 10,
+        "hidden_size": 100,
         "nonlinearity": "tanh",
         "output_size": 2,
     },
@@ -151,7 +151,7 @@ cfg_SCSC = {
     },
     "architecture": {
         "input_size": 1600,
-        "hidden_size": 10,
+        "hidden_size": 100,
         "nonlinearity": "tanh",
         "output_size": 2,
     },
