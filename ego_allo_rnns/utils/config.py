@@ -1,22 +1,18 @@
 import torch
 import yaml
 
-from ego_allo_rnns.configs.rnn import cfg
 
+def load_config(cfg_id: str = "example", cfg_path: str = "./configs/") -> dict:
 
-def load_config(cfg_id: str = "default", cfg_path: str = "./configs/") -> dict:
-    if cfg_id == "default":
-        return cfg
-    else:
-        # load corresponding yaml file and convert to dict
-        with open(cfg_path + cfg_id + ".yml") as f:
-            config = yaml.safe_load(f)
-            config = dict(config)
+    # load corresponding yaml file and convert to dict
+    with open(cfg_path + cfg_id + ".yml") as f:
+        config = yaml.safe_load(f)
+        config = dict(config)
 
-        # update fields
-        config = get_callable_lossfunct(config)
-        # return dict
-        return config
+    # update fields
+    config = get_callable_lossfunct(config)
+    # return dict
+    return config
 
 
 def get_callable_lossfunct(cfg: dict) -> dict:
