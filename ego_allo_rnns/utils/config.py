@@ -3,6 +3,15 @@ import yaml
 
 
 def load_config(cfg_id: str = "example", cfg_path: str = "./configs/") -> dict:
+    """loads config yaml file from disc, returns as nested dict
+
+    Args:
+        cfg_id (str, optional): filename. Defaults to "example".
+        cfg_path (str, optional): path to yaml file. Defaults to "./configs/".
+
+    Returns:
+        dict: dictionary with parsed config
+    """
 
     # load corresponding yaml file and convert to dict
     with open(cfg_path + cfg_id + ".yml") as f:
