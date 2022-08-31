@@ -10,10 +10,14 @@ parser = ArgumentParser()
 parser.add_argument(
     "--n_workers",
     default=1,
+    type=int,
     help="Number of workers for parallel processing of training runs. Defaults to 1",
 )
 parser.add_argument(
-    "--n_runs", default=1, help="Number of independent training runs. Defaults to 1."
+    "--n_runs",
+    default=1,
+    type=int,
+    help="Number of independent training runs. Defaults to 1.",
 )
 parser.add_argument(
     "--configs",
