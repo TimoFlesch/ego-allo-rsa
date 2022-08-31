@@ -1,0 +1,24 @@
+data:
+  n_train: 1000
+  n_test: 100
+  size_ds: 40
+
+architecture:
+  input_size: 1600
+  hidden_size: 10
+  nonlinearity: "tanh"
+  output_size: 2
+  device: "cpu"
+
+hyperparams:
+  lr: 0.001
+
+training:
+  log_dir: "./logs/"
+  checkpoint_dir: "./checkpoints/"
+  run_id: "integration_test"
+  n_epochs: 10
+  batch_size: 256
+  log_interval: 1
+  criterion: "MSE"
+  device: "cpu"
