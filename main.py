@@ -1,5 +1,7 @@
 from argparse import ArgumentParser
 
+import numpy as np
+
 from ego_allo_rnns.trainers.train_rnn import run_training
 from ego_allo_rnns.utils.config import load_config
 from ego_allo_rnns.utils.io import save_training_results
@@ -24,14 +26,16 @@ args = vars(args)  # type: ignore
 
 
 def collect_runs(args: dict):  # type: ignore
+    seeds = np.random.randint(1, 99999, size=args["n_runs"])
     for cfg_id in args["configs"]:
         try:
             cfg = load_config(cfg_id=cfg_id, cfg_path="./configs/experiments/")
         except FileNotFoundError:
             cfg = load_config(cfg_id=cfg_id.lower(), cfg_path="./configs/experiments/")
 
-        for r_id in range(args["n_runs"]):
+        for seed, r_id in zip(seeds, range(args["n_runs"])):
             cfg["training"]["run_id"] = cfg["training"]["run_id"] + "_" + str(r_id + 1)
+            cfg["data"]["random_seed"] = seed
             model, results = run_training(cfg)
             save_training_results(cfg, model, results)
 
