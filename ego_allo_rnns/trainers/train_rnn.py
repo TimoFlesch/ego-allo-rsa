@@ -24,7 +24,7 @@ def run_training(
         Tuple[torch.nn.Module, dict]: trained model and log file
     """
     if config is None:
-        config = load_config(cfg_id="default", cfg_path=config_path)
+        config = load_config(cfg_id="example", cfg_path=config_path)
         print("no config provided, proceeding with default config")
 
     # import data

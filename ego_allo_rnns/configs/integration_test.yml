@@ -2,6 +2,7 @@ data:
   n_train: 1000
   n_test: 100
   size_ds: 40
+  random_seed: 20
 
 architecture:
   input_size: 1600
