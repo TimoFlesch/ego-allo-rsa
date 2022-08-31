@@ -11,18 +11,11 @@ import math
 
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
 
-from ego_allo_rnns.utils.utils import (
-    RSA_predict,
-    front_frame,
-    input_frame,
-    input_label,
-    occlusion,
-)
+from ego_allo_rnns.utils.utils import front_frame, input_frame, input_label
 
 pi = math.pi
 
