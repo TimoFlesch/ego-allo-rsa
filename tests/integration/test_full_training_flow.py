@@ -1,10 +1,10 @@
 import pytest
 from torch import optim
 
-from ego_allo_rnns.configs.rnn import cfg_integration_test
 from ego_allo_rnns.data.EgoVsAllo import make_datasets
 from ego_allo_rnns.models.rnns import RNN
 from ego_allo_rnns.trainers.train_rnn import train_model
+from ego_allo_rnns.utils.config import load_config
 
 
 class TestFullTrainingFlow:
@@ -17,18 +17,21 @@ class TestFullTrainingFlow:
     """
 
     def test_training_flow(self):
+        # load configuration file
+        cfg = load_config(
+            cfg_id="integration_test", cfg_path="./ego_allo_rnns/configs/"
+        )
+
         # import data
-        data = make_datasets(**cfg_integration_test["data"])
+        data = make_datasets(**cfg["data"])
 
         # instantiate model
-        rnn = RNN(**cfg_integration_test["architecture"])
+        rnn = RNN(**cfg["architecture"])
 
         # init optimiser
-        optimiser = optim.SGD(
-            rnn.parameters(), cfg_integration_test["hyperparams"]["lr"]
-        )
+        optimiser = optim.SGD(rnn.parameters(), cfg["hyperparams"]["lr"])
         # train model
-        train_model(data, rnn, optimiser, **cfg_integration_test["training"])
+        train_model(data, rnn, optimiser, **cfg["training"])
 
 
 if __name__ == "__main__":
