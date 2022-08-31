@@ -1,0 +1,1524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>ego_allo_rnns.utils.utils API documentation</title>
+<meta name="description" content="Author: Xuan Wen
+Modified by: Timo Flesch" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ego_allo_rnns.utils.utils</code></h1>
+</header>
+<section id="section-intro">
+<p>Author: Xuan Wen
+Modified by: Timo Flesch</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Author: Xuan Wen
+Modified by: Timo Flesch
+&#34;&#34;&#34;
+import math
+from typing import Tuple
+
+# import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import torch
+import torch.nn as nn
+
+# from moviepy.editor import ImageSequenceClip
+from numpy import random
+
+# from tensorflow.python.keras import backend as K
+
+
+def random_poke_generator(num_element=5, poke_size=3):
+    # fix random seed to fix output numbers
+    samples = (50 - poke_size - 1) * random.sample(size=2 * num_element) + 1
+    samples = np.reshape(samples.astype(int), (2, num_element))
+    return samples
+
+
+def front_frame(
+    random_seed: int = 20, frame_amount: int = 20, show_target: bool = True
+) -&gt; Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    &#34;&#34;&#34;generates frames with stimulus information
+        Each stimulus consists of an image with start and target ports
+        and a few faint distractor ports
+        The intensity indicates whether the port is a distractor (0.2), start (0.7) or target (1.0)
+
+    Args:
+        random_seed (int, optional): seed for rng. Defaults to 20.
+        frame_amount (int, optional): number of frames to generate. Defaults to 20.
+
+    Returns:
+        Tuple[np.ndarray, np.ndarray, np.ndarray]: frames, coords of start and target ports
+    &#34;&#34;&#34;
+    random.seed(random_seed)
+    front_frame_size = 50
+    poke_size = 5
+    frames = np.zeros((frame_amount, front_frame_size, front_frame_size))
+    frames[:][:][:] = 0.1
+    start_poke_coordinate = random_poke_generator(frame_amount, poke_size=poke_size)
+    target_poke_coordinate = random_poke_generator(frame_amount, poke_size=poke_size)
+
+    for num in range(0, frame_amount):
+        empty_poke_coordinate = random_poke_generator(poke_size=poke_size)
+        # add noise pokes
+        for index in range(0, len(empty_poke_coordinate[0])):
+            for poke_row in range(poke_size):
+                for poke_column in range(poke_size):
+                    frames[num][empty_poke_coordinate[0][index] + poke_row][
+                        empty_poke_coordinate[1][index] + poke_column
+                    ] = 0.2
+        # add start poke
+        for poke_row in range(poke_size):
+            for poke_column in range(poke_size):
+                frames[num][start_poke_coordinate[0][num] + poke_row][
+                    start_poke_coordinate[1][num] + poke_column
+                ] = 0.7
+
+        # add target poke
+        if show_target:
+            for poke_row in range(poke_size):
+                for poke_column in range(poke_size):
+                    frames[num][target_poke_coordinate[0][num] + poke_row][
+                        target_poke_coordinate[1][num] + poke_column
+                    ] = 1
+
+    return frames, start_poke_coordinate, target_poke_coordinate
+
+
+def input_frame(front_frame, input_type, start_poke=None):
+    &#34;&#34;&#34;generate number of frames can be used as input
+    attach the front frame to the background frame, which centered at the start poke (SC) or the actual center (WC)
+
+    Args:
+        front_frame (ndarray): frame_amount * 50 * 50
+        input_type (string): WC or SC
+        start_poke (ndarray): frame_amount * 2, set to None as default
+
+    Returns:
+        combined_frame: frame_amount * 100 * 100
+    &#34;&#34;&#34;
+    background_size = 100
+    conbined_frame = np.zeros((len(front_frame), background_size, background_size))
+    if input_type == &#34;WC&#34;:
+        for index in range(0, len(front_frame)):
+            conbined_frame[index, 24 : 24 + 50, 24 : 24 + 50] = front_frame[index]
+    elif input_type == &#34;SC&#34; and start_poke.all() is not None:
+        for index in range(0, len(front_frame)):
+            # conbined_frame[a, b, c]
+            conbined_frame[
+                index,
+                50 - start_poke[0][index] : 100 - start_poke[0][index],
+                50 - start_poke[1][index] : 100 - start_poke[1][index],
+            ] = front_frame[index]
+    else:
+        return 0
+    return conbined_frame
+
+
+def input_label(start_poke, target_poke, output_type, label_type):
+    &#34;&#34;&#34;generate training label by its start poke and target poke
+
+    Args:
+        start_poke ([ndarray]): frame amount * 2
+        target_poke (ndarray): frame amount * 2
+        output_type (string): SC or WC
+        label_type (string): cartesian or polar
+
+    Returns:
+        ndarray: frame amount * 2 --&gt; x,y for cartesian and Theta, r for polar
+    &#34;&#34;&#34;
+    label = np.zeros((len(start_poke[0]), 2))
+    for index in range(0, len(start_poke[0])):
+        if output_type == &#34;WC&#34;:
+
+            if label_type == &#34;Cartesian&#34;:
+                label[index] = world_center_distance_cartesian(
+                    target=[target_poke[0][index], target_poke[1][index]]
+                )
+            elif label_type == &#34;Polar&#34;:
+                label[index] = world_center_distance_polar(
+                    target=[target_poke[0][index], target_poke[1][index]]
+                )
+            else:
+                return 0
+
+        elif output_type == &#34;SC&#34;:
+
+            if label_type == &#34;Cartesian&#34;:
+                label[index] = self_center_distance_cartesian(
+                    start=[start_poke[0][index], start_poke[1][index]],
+                    target=[target_poke[0][index], target_poke[1][index]],
+                )
+            elif label_type == &#34;Polar&#34;:
+                label[index] = self_center_distance_polar(
+                    start=[start_poke[0][index], start_poke[1][index]],
+                    target=[target_poke[0][index], target_poke[1][index]],
+                )
+            else:
+                return 0
+
+        else:
+            return 0
+
+    return label
+
+
+def distance_difference(x, y):
+    &#34;&#34;&#34;
+    Calculate minimum difference between two points
+    &#34;&#34;&#34;
+    return abs(x - y)
+
+
+def fit_transform(data, label_type=None):
+    data = data.astype(float)
+    if label_type == &#34;Polar&#34;:
+        scaler = [2 * math.pi, 50]
+    elif label_type == &#34;Cartesian&#34;:
+        scaler = [
+            abs(np.max(data[:, 0]) - np.min(data[:, 0])),
+            np.max(data[:, 1]) - np.min(data[:, 1]),
+        ]
+    else:
+        return None
+    for i in np.arange(len(data[0])):
+        s = scaler[i]
+        data[:, i] = (data[:, i] - np.min(data[:, i])) * 1 / s
+    return data
+
+
+# def distance_error(y_true, y_pred):
+#     &#34;&#34;&#34;
+#     Calculate the mean diference between the true points
+#     and the predicted points. Each point is represented
+#     as a binary vector.
+#     &#34;&#34;&#34;
+#     diff = distance_difference(K.argmax(y_true), K.argmax(y_pred))
+#     return K.mean(K.cast(K.abs(diff), K.floatx()))
+
+
+# def distance_error_regression(y_true, y_pred):
+#     return K.mean(distance_difference(y_true, y_pred))
+
+
+def label_unification(type, number):
+    if type == &#34;Cartesian&#34;:
+        multiplier = math.floor(number / 5)
+        number = 5 * multiplier
+    if type == &#34;Polar&#34;:
+        multiplier = math.floor(number / 0.2)
+        number = 0.2 * multiplier
+
+    return number
+
+
+def float_points_in_circum(r, n=150):
+    return [
+        (math.cos(2 * math.pi / n * x) * r, math.sin(2 * math.pi / n * x) * r)
+        for x in range(0, n + 1)
+    ]
+
+
+def get_angle(coordinate):
+    r = 24
+    return math.atan2(coordinate[1] - r, coordinate[0] - r)
+
+
+def circum(r=10):
+    unsorted = np.unique(
+        np.asarray(
+            [
+                np.asarray([math.floor(float(i)) for i in x]) + r
+                for x in float_points_in_circum(r)
+            ]
+        ),
+        axis=0,
+    )
+    sort = np.asarray(sorted(unsorted, key=get_angle))
+    return sort
+
+
+def ordered_xy_poke_generator(fix=&#34;y&#34;):
+    start_poke = np.zeros((2, 50))
+    start_poke[:][:] = 24
+
+    start_poke[:][:] = 24
+    if fix == &#34;y&#34;:
+        poke = np.zeros((2, 50))
+        poke[0] = np.arange(0, 50, 1)
+        poke[1][:] = 25
+        return start_poke.astype(int), poke.T.astype(int)
+    elif fix == &#34;x&#34;:
+        poke = np.zeros((2, 50))
+        poke[1] = np.arange(0, 50, 1)
+        poke[0][:] = 25
+        return start_poke.astype(int), poke.T.astype(int)
+    else:
+        return None
+
+
+def ordered_circle_poke_generator():
+    target_poke = circum(r=24)
+    start_poke = np.zeros((2, len(target_poke)))
+    start_poke[:][:] = 24
+
+    return start_poke.astype(int), target_poke.T.astype(int)
+
+
+def ordered_front_frame():
+    front_frame_size = 50
+    poke_size = 2
+    start_poke_coordinate, target_poke_coordinate = ordered_circle_poke_generator()
+    frame_amount = len(target_poke_coordinate[0])
+    print(frame_amount)
+    frames = np.zeros((frame_amount, front_frame_size, front_frame_size))
+    frames[:][:][:] = 0.1
+    print(frames.shape)
+    for num in range(0, frame_amount):
+        # add start poke
+        for poke_row in range(poke_size):
+            for poke_column in range(poke_size):
+                frames[num][start_poke_coordinate[0][num] + poke_row][
+                    start_poke_coordinate[1][num] + poke_column
+                ] = 0.7
+        # add target poke
+        for poke_row in range(poke_size):
+            for poke_column in range(poke_size):
+                frames[num][target_poke_coordinate[0][num] + poke_row][
+                    target_poke_coordinate[1][num] + poke_column
+                ] = 1
+        frames[num] = np.rot90(frames[num], k=3)
+
+    return frames, start_poke_coordinate, target_poke_coordinate
+
+
+# start/target = [x, y] in cartesian, return value vector:[m, n], polar: [Theta, distance]
+# ! Convert the coordinate from [0,0] at the top-left to [0,0] at the center (only needed in the world-center)
+def coordinate_shift(x, y, frame_size=50):
+    center = math.ceil(frame_size / 2)
+    return [x - center, y - center]
+
+
+def world_center_distance_cartesian(target):
+    vector = coordinate_shift(*target)
+    return vector
+
+
+def world_center_distance_polar(target):
+
+    vector = coordinate_shift(*target)
+    # if vector[0] == 0 and vector[1] != 0:
+    #     return [math.pi/2 * vector[1]/abs(vector[1]), math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2))]
+    # elif vector[0] == 0 and vector[1] == 0:
+    #     return [0, 0]
+    # # elif vector[0] is -0.0:
+    # #     print(&#39;is 0.0&#39;)
+    # #     return [-math.pi, math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2))]
+    # # elif vector[0] is 0.0:
+    # #     print(&#39;is 0.0&#39;)
+    # #     return [math.pi, math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2))]
+    # else:
+    return [
+        math.atan2(vector[1], vector[0]),
+        math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2)),
+    ]
+
+
+def self_center_distance_cartesian(start, target):
+    return [target[0] - start[0], target[1] - start[1]]
+    # return [start[0] - target[0], start[1] - target[1]]
+
+
+def self_center_distance_polar(start, target):
+
+    x = target[0] - start[0]
+    y = target[1] - start[1]
+    # if x == 0 and y != 0:
+    #     return [math.pi/2 * y/abs(y), math.sqrt(math.pow(x, 2) + math.pow(y, 2))]
+    # elif x == 0 and y == 0:
+    #     return [0, 0]
+    # # if x is -0.0:
+    #     return [-math.pi, math.sqrt(math.pow(x, 2) + math.pow(y, 2))]
+    # elif x is 0.0:
+    #     return [math.pi, math.sqrt(math.pow(x, 2) + math.pow(y, 2))]
+    # else:
+    return [math.atan2(y, x), math.sqrt(math.pow(x, 2) + math.pow(y, 2))]
+
+
+def plot_filters_single_channel_big(t):
+
+    # setting the rows and columns
+    nrows = t.shape[0] * t.shape[2]
+    ncols = t.shape[1] * t.shape[3]
+
+    npimg = np.array(t.numpy(), np.float32)
+    npimg = npimg.transpose((0, 2, 1, 3))
+    npimg = npimg.ravel().reshape(nrows, ncols)
+
+    npimg = npimg.T
+
+    fig, ax = plt.subplots(figsize=(ncols / 10, nrows / 200))
+    imgplot = sns.heatmap(  # noqa F841
+        npimg, xticklabels=False, yticklabels=False, cmap=&#34;gray&#34;, ax=ax, cbar=False
+    )
+    pass
+
+
+def plot_filters_single_channel(t):
+
+    # kernels depth * number of kernels
+    nplots = t.shape[0] * t.shape[1]
+    ncols = 12
+
+    nrows = 1 + nplots // ncols
+    # convert tensor to numpy image
+    npimg = np.array(t.numpy(), np.float32)
+
+    count = 0
+    fig = plt.figure(figsize=(ncols, nrows))
+
+    # looping through all the kernels in each channel
+    for i in range(t.shape[0]):
+        for j in range(t.shape[1]):
+            count += 1
+            ax1 = fig.add_subplot(nrows, ncols, count)
+            npimg = np.array(t[i, j].numpy(), np.float32)
+            npimg = (npimg - np.mean(npimg)) / np.std(npimg)
+            npimg = np.minimum(1, np.maximum(0, (npimg + 0.5)))
+            ax1.imshow(npimg)
+            ax1.set_title(str(i) + &#34;,&#34; + str(j))
+            ax1.axis(&#34;off&#34;)
+            ax1.set_xticklabels([])
+            ax1.set_yticklabels([])
+
+    plt.tight_layout()
+    plt.show()
+    pass
+
+
+def plot_filters_multi_channel(t):
+
+    # get the number of kernals
+    num_kernels = t.shape[0]
+
+    # define number of columns for subplots
+    num_cols = 12
+    # rows = num of kernels
+    num_rows = num_kernels
+
+    # set the figure size
+    fig = plt.figure(figsize=(num_cols, num_rows))
+
+    # looping through all the kernels
+    for i in range(t.shape[0]):
+        ax1 = fig.add_subplot(num_rows, num_cols, i + 1)
+
+        # for each kernel, we convert the tensor to numpy
+        npimg = np.array(t[i].numpy(), np.float32)
+        # standardize the numpy image
+        npimg = (npimg - np.mean(npimg)) / np.std(npimg)
+        npimg = np.minimum(1, np.maximum(0, (npimg + 0.5)))
+        npimg = npimg.transpose((1, 2, 0))
+        ax1.imshow(npimg)
+        ax1.axis(&#34;off&#34;)
+        ax1.set_title(str(i))
+        ax1.set_xticklabels([])
+        ax1.set_yticklabels([])
+
+    plt.savefig(&#34;myimage.png&#34;, dpi=100)
+    plt.tight_layout()
+    plt.show()
+    pass
+
+
+def plot_weights(model, layer_num, single_channel=True, collated=False):
+
+    # extracting the model features at the particular layer number
+    layer = model.features[layer_num]
+
+    # checking whether the layer is convolution layer or not
+    if isinstance(layer, nn.Conv2d):
+        # getting the weight tensor data
+        weight_tensor = model.features[layer_num].weight.data
+
+        if single_channel:
+            if collated:
+                plot_filters_single_channel_big(weight_tensor)
+            else:
+                plot_filters_single_channel(weight_tensor)
+
+        else:
+            if weight_tensor.shape[1] == 3:
+                plot_filters_multi_channel(weight_tensor)
+            else:
+                print(
+                    &#34;Can only plot weights with three channels with single channel = False&#34;
+                )
+    else:
+        print(&#34;Can only visualize layers which are convolutional&#34;)
+
+
+# custom function to conduct occlusion experiments
+
+
+def occlusion(model, image, label, occ_size=50, occ_stride=50, occ_pixel=0.5):
+
+    # get the width and height of the image
+    width, height = image.shape[-2], image.shape[-1]
+
+    # setting the output image width and height
+    output_height = int(np.ceil((height - occ_size) / occ_stride))
+    output_width = int(np.ceil((width - occ_size) / occ_stride))
+
+    # create a white image of sizes we defined
+    heatmap = torch.zeros((output_height, output_width))
+
+    # iterate all the pixels in each column
+    for h in range(0, height):
+        for w in range(0, width):
+
+            h_start = h * occ_stride
+            w_start = w * occ_stride
+            h_end = min(height, h_start + occ_size)
+            w_end = min(width, w_start + occ_size)
+
+            if (w_end) &gt;= width or (h_end) &gt;= height:
+                continue
+
+            input_image = image.clone().detach()
+
+            # replacing all the pixel information in the image with occ_pixel(grey) in the specified location
+            input_image[:, :, w_start:w_end, h_start:h_end] = occ_pixel
+
+            # run inference on modified image
+            output = model(input_image)
+            output = nn.functional.softmax(output, dim=1)
+            prob = output.tolist()[0][label]
+
+            # setting the heatmap location to probability value
+            heatmap[h, w] = prob
+
+    return heatmap
+
+
+def RSA_random_input_generate():
+    input_type = &#34;SC&#34;
+    label_type = &#34;SC&#34;
+    frames, start_poke_coordinate, target_poke_coordinate = front_frame(
+        random_seed=88, frame_amount=1000
+    )
+    input = input_frame(frames, input_type, start_poke_coordinate)
+    label = input_label(
+        start_poke_coordinate, target_poke_coordinate, label_type, &#34;Cartesian&#34;
+    )
+
+    # add index to the original label
+    label_with_index = [(idx, item) for idx, item in enumerate(label)]
+    # sort by the first element
+    sort_by_x = sorted(label_with_index, key=lambda tup: tup[1][0])
+    sort_by_y = sorted(label_with_index, key=lambda tup: tup[1][1])
+    print(sort_by_x)
+
+    # Unique Kth index tuples
+    # Using map() + next() + lambda
+    unique_x = [
+        *map(
+            lambda ele: next(tup for tup in sort_by_x if tup[1][0] == ele),
+            {tup[1][0] for tup in sort_by_x},
+        )
+    ]
+
+    unique_y = [
+        *map(
+            lambda ele: next(tup for tup in sort_by_y if tup[1][1] == ele),
+            {tup[1][1] for tup in sort_by_y},
+        )
+    ]
+    # get the index
+    order_x = [x[0] for x in unique_x]
+    order_y = [x[0] for x in unique_y]
+
+    # use this order to select frame
+    RSA_x = [input[i] for i in order_x]
+    RSA_y = [input[i] for i in order_y]
+    return RSA_x, RSA_y
+
+
+def RSA_order_input_generate():
+    input_type = &#34;WC&#34;
+    label_type = &#34;WC&#34;
+    frames, start_poke_coordinate, target_poke_coordinate = ordered_front_frame()
+    input = input_frame(frames, input_type, start_poke_coordinate)
+    label = input_label(
+        start_poke_coordinate, target_poke_coordinate, label_type, &#34;Polar&#34;
+    )
+    return input, label
+
+
+def RSA_input_generate():
+    pass
+
+
+def RSA_predict(model_1, model_2):
+    num_class = 2
+    input, label = RSA_order_input_generate()
+    input = np.expand_dims(input, 1)
+    input = torch.from_numpy(input)
+    RSA_matrix_x = np.zeros((num_class, len(input), len(input)))  # build matrix
+
+    predict_collect_1 = model_1(input.float())
+    predict_collect_2 = model_2(input.float())
+    predict_collect_1 = predict_collect_1.detach().numpy()
+    predict_collect_2 = predict_collect_2.detach().numpy()
+    # save_predict_value = np.zeros
+
+    for i1, elem1 in enumerate(predict_collect_1):
+        for i2, elem2 in enumerate(predict_collect_2):
+            RSA_matrix_x[0][len(input) - 1 - i1][i2] = abs(elem1[0] - elem2[0])
+            RSA_matrix_x[1][len(input) - 1 - i1][i2] = abs(elem1[1] - elem2[1])
+
+    return RSA_matrix_x
+
+
+# def example_gif_generate():
+#     input_type = &#34;WC&#34;
+#     label_type = &#34;WC&#34;  # noqa F841
+#     frames, start_poke_coordinate, target_poke_coordinate = ordered_front_frame()
+#     frames = input_frame(frames, input_type, start_poke_coordinate)
+#     frames = abs(1 - frames) * 1000
+#     new_frames = np.zeros((len(frames), 500, 500))
+#     for i in range(len(frames)):
+#         new_frames[i] = cv2.resize(
+#             frames[i], dsize=(500, 500), interpolation=cv2.INTER_NEAREST
+#         )
+#     new_frames = np.expand_dims(new_frames, 3)
+#     clip = ImageSequenceClip(list(new_frames), fps=20)
+#     clip.write_gif(&#34;/Users/wen/repos/rnn_sc_wc/output/test_example.gif&#34;, fps=20)
+#     pass
+
+
+if __name__ == &#34;__main__&#34;:
+
+    &#34;&#34;&#34;
+    # * show example input picture
+    frames, start_poke_coordinate, target_poke_coordinate = front_frame(frame_amount=1)
+    final_inputs = input_frame(frames, &#34;SC&#34;, start_poke_coordinate)
+    y_train = input_label(start_poke_coordinate, target_poke_coordinate, &#34;SC&#34;, &#34;Cartesian&#34;)
+    print(y_train)
+    print(start_poke_coordinate)
+    print(target_poke_coordinate)
+    for index in range(0, len(frames)):
+        plt.imshow(final_inputs[index])
+        plt.show()
+    &#34;&#34;&#34;
+    frames, start_poke_coordinate, target_poke_coordinate = ordered_front_frame()
+    for index in range(0, len(frames)):
+        plt.imshow(frames[index])
+        plt.show()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="ego_allo_rnns.utils.utils.RSA_input_generate"><code class="name flex">
+<span>def <span class="ident">RSA_input_generate</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def RSA_input_generate():
+    pass</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.RSA_order_input_generate"><code class="name flex">
+<span>def <span class="ident">RSA_order_input_generate</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def RSA_order_input_generate():
+    input_type = &#34;WC&#34;
+    label_type = &#34;WC&#34;
+    frames, start_poke_coordinate, target_poke_coordinate = ordered_front_frame()
+    input = input_frame(frames, input_type, start_poke_coordinate)
+    label = input_label(
+        start_poke_coordinate, target_poke_coordinate, label_type, &#34;Polar&#34;
+    )
+    return input, label</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.RSA_predict"><code class="name flex">
+<span>def <span class="ident">RSA_predict</span></span>(<span>model_1, model_2)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def RSA_predict(model_1, model_2):
+    num_class = 2
+    input, label = RSA_order_input_generate()
+    input = np.expand_dims(input, 1)
+    input = torch.from_numpy(input)
+    RSA_matrix_x = np.zeros((num_class, len(input), len(input)))  # build matrix
+
+    predict_collect_1 = model_1(input.float())
+    predict_collect_2 = model_2(input.float())
+    predict_collect_1 = predict_collect_1.detach().numpy()
+    predict_collect_2 = predict_collect_2.detach().numpy()
+    # save_predict_value = np.zeros
+
+    for i1, elem1 in enumerate(predict_collect_1):
+        for i2, elem2 in enumerate(predict_collect_2):
+            RSA_matrix_x[0][len(input) - 1 - i1][i2] = abs(elem1[0] - elem2[0])
+            RSA_matrix_x[1][len(input) - 1 - i1][i2] = abs(elem1[1] - elem2[1])
+
+    return RSA_matrix_x</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.RSA_random_input_generate"><code class="name flex">
+<span>def <span class="ident">RSA_random_input_generate</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def RSA_random_input_generate():
+    input_type = &#34;SC&#34;
+    label_type = &#34;SC&#34;
+    frames, start_poke_coordinate, target_poke_coordinate = front_frame(
+        random_seed=88, frame_amount=1000
+    )
+    input = input_frame(frames, input_type, start_poke_coordinate)
+    label = input_label(
+        start_poke_coordinate, target_poke_coordinate, label_type, &#34;Cartesian&#34;
+    )
+
+    # add index to the original label
+    label_with_index = [(idx, item) for idx, item in enumerate(label)]
+    # sort by the first element
+    sort_by_x = sorted(label_with_index, key=lambda tup: tup[1][0])
+    sort_by_y = sorted(label_with_index, key=lambda tup: tup[1][1])
+    print(sort_by_x)
+
+    # Unique Kth index tuples
+    # Using map() + next() + lambda
+    unique_x = [
+        *map(
+            lambda ele: next(tup for tup in sort_by_x if tup[1][0] == ele),
+            {tup[1][0] for tup in sort_by_x},
+        )
+    ]
+
+    unique_y = [
+        *map(
+            lambda ele: next(tup for tup in sort_by_y if tup[1][1] == ele),
+            {tup[1][1] for tup in sort_by_y},
+        )
+    ]
+    # get the index
+    order_x = [x[0] for x in unique_x]
+    order_y = [x[0] for x in unique_y]
+
+    # use this order to select frame
+    RSA_x = [input[i] for i in order_x]
+    RSA_y = [input[i] for i in order_y]
+    return RSA_x, RSA_y</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.circum"><code class="name flex">
+<span>def <span class="ident">circum</span></span>(<span>r=10)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def circum(r=10):
+    unsorted = np.unique(
+        np.asarray(
+            [
+                np.asarray([math.floor(float(i)) for i in x]) + r
+                for x in float_points_in_circum(r)
+            ]
+        ),
+        axis=0,
+    )
+    sort = np.asarray(sorted(unsorted, key=get_angle))
+    return sort</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.coordinate_shift"><code class="name flex">
+<span>def <span class="ident">coordinate_shift</span></span>(<span>x, y, frame_size=50)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def coordinate_shift(x, y, frame_size=50):
+    center = math.ceil(frame_size / 2)
+    return [x - center, y - center]</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.distance_difference"><code class="name flex">
+<span>def <span class="ident">distance_difference</span></span>(<span>x, y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate minimum difference between two points</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def distance_difference(x, y):
+    &#34;&#34;&#34;
+    Calculate minimum difference between two points
+    &#34;&#34;&#34;
+    return abs(x - y)</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.fit_transform"><code class="name flex">
+<span>def <span class="ident">fit_transform</span></span>(<span>data, label_type=None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fit_transform(data, label_type=None):
+    data = data.astype(float)
+    if label_type == &#34;Polar&#34;:
+        scaler = [2 * math.pi, 50]
+    elif label_type == &#34;Cartesian&#34;:
+        scaler = [
+            abs(np.max(data[:, 0]) - np.min(data[:, 0])),
+            np.max(data[:, 1]) - np.min(data[:, 1]),
+        ]
+    else:
+        return None
+    for i in np.arange(len(data[0])):
+        s = scaler[i]
+        data[:, i] = (data[:, i] - np.min(data[:, i])) * 1 / s
+    return data</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.float_points_in_circum"><code class="name flex">
+<span>def <span class="ident">float_points_in_circum</span></span>(<span>r, n=150)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def float_points_in_circum(r, n=150):
+    return [
+        (math.cos(2 * math.pi / n * x) * r, math.sin(2 * math.pi / n * x) * r)
+        for x in range(0, n + 1)
+    ]</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.front_frame"><code class="name flex">
+<span>def <span class="ident">front_frame</span></span>(<span>random_seed: int = 20, frame_amount: int = 20, show_target: bool = True) ‑> Tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>generates frames with stimulus information
+Each stimulus consists of an image with start and target ports
+and a few faint distractor ports
+The intensity indicates whether the port is a distractor (0.2), start (0.7) or target (1.0)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>random_seed</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>seed for rng. Defaults to 20.</dd>
+<dt><strong><code>frame_amount</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>number of frames to generate. Defaults to 20.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Tuple[np.ndarray, np.ndarray, np.ndarray]</code></dt>
+<dd>frames, coords of start and target ports</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def front_frame(
+    random_seed: int = 20, frame_amount: int = 20, show_target: bool = True
+) -&gt; Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    &#34;&#34;&#34;generates frames with stimulus information
+        Each stimulus consists of an image with start and target ports
+        and a few faint distractor ports
+        The intensity indicates whether the port is a distractor (0.2), start (0.7) or target (1.0)
+
+    Args:
+        random_seed (int, optional): seed for rng. Defaults to 20.
+        frame_amount (int, optional): number of frames to generate. Defaults to 20.
+
+    Returns:
+        Tuple[np.ndarray, np.ndarray, np.ndarray]: frames, coords of start and target ports
+    &#34;&#34;&#34;
+    random.seed(random_seed)
+    front_frame_size = 50
+    poke_size = 5
+    frames = np.zeros((frame_amount, front_frame_size, front_frame_size))
+    frames[:][:][:] = 0.1
+    start_poke_coordinate = random_poke_generator(frame_amount, poke_size=poke_size)
+    target_poke_coordinate = random_poke_generator(frame_amount, poke_size=poke_size)
+
+    for num in range(0, frame_amount):
+        empty_poke_coordinate = random_poke_generator(poke_size=poke_size)
+        # add noise pokes
+        for index in range(0, len(empty_poke_coordinate[0])):
+            for poke_row in range(poke_size):
+                for poke_column in range(poke_size):
+                    frames[num][empty_poke_coordinate[0][index] + poke_row][
+                        empty_poke_coordinate[1][index] + poke_column
+                    ] = 0.2
+        # add start poke
+        for poke_row in range(poke_size):
+            for poke_column in range(poke_size):
+                frames[num][start_poke_coordinate[0][num] + poke_row][
+                    start_poke_coordinate[1][num] + poke_column
+                ] = 0.7
+
+        # add target poke
+        if show_target:
+            for poke_row in range(poke_size):
+                for poke_column in range(poke_size):
+                    frames[num][target_poke_coordinate[0][num] + poke_row][
+                        target_poke_coordinate[1][num] + poke_column
+                    ] = 1
+
+    return frames, start_poke_coordinate, target_poke_coordinate</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.get_angle"><code class="name flex">
+<span>def <span class="ident">get_angle</span></span>(<span>coordinate)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_angle(coordinate):
+    r = 24
+    return math.atan2(coordinate[1] - r, coordinate[0] - r)</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.input_frame"><code class="name flex">
+<span>def <span class="ident">input_frame</span></span>(<span>front_frame, input_type, start_poke=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>generate number of frames can be used as input
+attach the front frame to the background frame, which centered at the start poke (SC) or the actual center (WC)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>front_frame</code></strong> :&ensp;<code>ndarray</code></dt>
+<dd>frame_amount * 50 * 50</dd>
+<dt><strong><code>input_type</code></strong> :&ensp;<code>string</code></dt>
+<dd>WC or SC</dd>
+<dt><strong><code>start_poke</code></strong> :&ensp;<code>ndarray</code></dt>
+<dd>frame_amount * 2, set to None as default</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>combined_frame</code></dt>
+<dd>frame_amount * 100 * 100</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def input_frame(front_frame, input_type, start_poke=None):
+    &#34;&#34;&#34;generate number of frames can be used as input
+    attach the front frame to the background frame, which centered at the start poke (SC) or the actual center (WC)
+
+    Args:
+        front_frame (ndarray): frame_amount * 50 * 50
+        input_type (string): WC or SC
+        start_poke (ndarray): frame_amount * 2, set to None as default
+
+    Returns:
+        combined_frame: frame_amount * 100 * 100
+    &#34;&#34;&#34;
+    background_size = 100
+    conbined_frame = np.zeros((len(front_frame), background_size, background_size))
+    if input_type == &#34;WC&#34;:
+        for index in range(0, len(front_frame)):
+            conbined_frame[index, 24 : 24 + 50, 24 : 24 + 50] = front_frame[index]
+    elif input_type == &#34;SC&#34; and start_poke.all() is not None:
+        for index in range(0, len(front_frame)):
+            # conbined_frame[a, b, c]
+            conbined_frame[
+                index,
+                50 - start_poke[0][index] : 100 - start_poke[0][index],
+                50 - start_poke[1][index] : 100 - start_poke[1][index],
+            ] = front_frame[index]
+    else:
+        return 0
+    return conbined_frame</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.input_label"><code class="name flex">
+<span>def <span class="ident">input_label</span></span>(<span>start_poke, target_poke, output_type, label_type)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>generate training label by its start poke and target poke</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start_poke</code></strong> :&ensp;<code>[ndarray]</code></dt>
+<dd>frame amount * 2</dd>
+<dt><strong><code>target_poke</code></strong> :&ensp;<code>ndarray</code></dt>
+<dd>frame amount * 2</dd>
+<dt><strong><code>output_type</code></strong> :&ensp;<code>string</code></dt>
+<dd>SC or WC</dd>
+<dt><strong><code>label_type</code></strong> :&ensp;<code>string</code></dt>
+<dd>cartesian or polar</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>ndarray</code></dt>
+<dd>frame amount * 2 &ndash;&gt; x,y for cartesian and Theta, r for polar</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def input_label(start_poke, target_poke, output_type, label_type):
+    &#34;&#34;&#34;generate training label by its start poke and target poke
+
+    Args:
+        start_poke ([ndarray]): frame amount * 2
+        target_poke (ndarray): frame amount * 2
+        output_type (string): SC or WC
+        label_type (string): cartesian or polar
+
+    Returns:
+        ndarray: frame amount * 2 --&gt; x,y for cartesian and Theta, r for polar
+    &#34;&#34;&#34;
+    label = np.zeros((len(start_poke[0]), 2))
+    for index in range(0, len(start_poke[0])):
+        if output_type == &#34;WC&#34;:
+
+            if label_type == &#34;Cartesian&#34;:
+                label[index] = world_center_distance_cartesian(
+                    target=[target_poke[0][index], target_poke[1][index]]
+                )
+            elif label_type == &#34;Polar&#34;:
+                label[index] = world_center_distance_polar(
+                    target=[target_poke[0][index], target_poke[1][index]]
+                )
+            else:
+                return 0
+
+        elif output_type == &#34;SC&#34;:
+
+            if label_type == &#34;Cartesian&#34;:
+                label[index] = self_center_distance_cartesian(
+                    start=[start_poke[0][index], start_poke[1][index]],
+                    target=[target_poke[0][index], target_poke[1][index]],
+                )
+            elif label_type == &#34;Polar&#34;:
+                label[index] = self_center_distance_polar(
+                    start=[start_poke[0][index], start_poke[1][index]],
+                    target=[target_poke[0][index], target_poke[1][index]],
+                )
+            else:
+                return 0
+
+        else:
+            return 0
+
+    return label</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.label_unification"><code class="name flex">
+<span>def <span class="ident">label_unification</span></span>(<span>type, number)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def label_unification(type, number):
+    if type == &#34;Cartesian&#34;:
+        multiplier = math.floor(number / 5)
+        number = 5 * multiplier
+    if type == &#34;Polar&#34;:
+        multiplier = math.floor(number / 0.2)
+        number = 0.2 * multiplier
+
+    return number</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.occlusion"><code class="name flex">
+<span>def <span class="ident">occlusion</span></span>(<span>model, image, label, occ_size=50, occ_stride=50, occ_pixel=0.5)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def occlusion(model, image, label, occ_size=50, occ_stride=50, occ_pixel=0.5):
+
+    # get the width and height of the image
+    width, height = image.shape[-2], image.shape[-1]
+
+    # setting the output image width and height
+    output_height = int(np.ceil((height - occ_size) / occ_stride))
+    output_width = int(np.ceil((width - occ_size) / occ_stride))
+
+    # create a white image of sizes we defined
+    heatmap = torch.zeros((output_height, output_width))
+
+    # iterate all the pixels in each column
+    for h in range(0, height):
+        for w in range(0, width):
+
+            h_start = h * occ_stride
+            w_start = w * occ_stride
+            h_end = min(height, h_start + occ_size)
+            w_end = min(width, w_start + occ_size)
+
+            if (w_end) &gt;= width or (h_end) &gt;= height:
+                continue
+
+            input_image = image.clone().detach()
+
+            # replacing all the pixel information in the image with occ_pixel(grey) in the specified location
+            input_image[:, :, w_start:w_end, h_start:h_end] = occ_pixel
+
+            # run inference on modified image
+            output = model(input_image)
+            output = nn.functional.softmax(output, dim=1)
+            prob = output.tolist()[0][label]
+
+            # setting the heatmap location to probability value
+            heatmap[h, w] = prob
+
+    return heatmap</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.ordered_circle_poke_generator"><code class="name flex">
+<span>def <span class="ident">ordered_circle_poke_generator</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ordered_circle_poke_generator():
+    target_poke = circum(r=24)
+    start_poke = np.zeros((2, len(target_poke)))
+    start_poke[:][:] = 24
+
+    return start_poke.astype(int), target_poke.T.astype(int)</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.ordered_front_frame"><code class="name flex">
+<span>def <span class="ident">ordered_front_frame</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ordered_front_frame():
+    front_frame_size = 50
+    poke_size = 2
+    start_poke_coordinate, target_poke_coordinate = ordered_circle_poke_generator()
+    frame_amount = len(target_poke_coordinate[0])
+    print(frame_amount)
+    frames = np.zeros((frame_amount, front_frame_size, front_frame_size))
+    frames[:][:][:] = 0.1
+    print(frames.shape)
+    for num in range(0, frame_amount):
+        # add start poke
+        for poke_row in range(poke_size):
+            for poke_column in range(poke_size):
+                frames[num][start_poke_coordinate[0][num] + poke_row][
+                    start_poke_coordinate[1][num] + poke_column
+                ] = 0.7
+        # add target poke
+        for poke_row in range(poke_size):
+            for poke_column in range(poke_size):
+                frames[num][target_poke_coordinate[0][num] + poke_row][
+                    target_poke_coordinate[1][num] + poke_column
+                ] = 1
+        frames[num] = np.rot90(frames[num], k=3)
+
+    return frames, start_poke_coordinate, target_poke_coordinate</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.ordered_xy_poke_generator"><code class="name flex">
+<span>def <span class="ident">ordered_xy_poke_generator</span></span>(<span>fix='y')</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ordered_xy_poke_generator(fix=&#34;y&#34;):
+    start_poke = np.zeros((2, 50))
+    start_poke[:][:] = 24
+
+    start_poke[:][:] = 24
+    if fix == &#34;y&#34;:
+        poke = np.zeros((2, 50))
+        poke[0] = np.arange(0, 50, 1)
+        poke[1][:] = 25
+        return start_poke.astype(int), poke.T.astype(int)
+    elif fix == &#34;x&#34;:
+        poke = np.zeros((2, 50))
+        poke[1] = np.arange(0, 50, 1)
+        poke[0][:] = 25
+        return start_poke.astype(int), poke.T.astype(int)
+    else:
+        return None</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.plot_filters_multi_channel"><code class="name flex">
+<span>def <span class="ident">plot_filters_multi_channel</span></span>(<span>t)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_filters_multi_channel(t):
+
+    # get the number of kernals
+    num_kernels = t.shape[0]
+
+    # define number of columns for subplots
+    num_cols = 12
+    # rows = num of kernels
+    num_rows = num_kernels
+
+    # set the figure size
+    fig = plt.figure(figsize=(num_cols, num_rows))
+
+    # looping through all the kernels
+    for i in range(t.shape[0]):
+        ax1 = fig.add_subplot(num_rows, num_cols, i + 1)
+
+        # for each kernel, we convert the tensor to numpy
+        npimg = np.array(t[i].numpy(), np.float32)
+        # standardize the numpy image
+        npimg = (npimg - np.mean(npimg)) / np.std(npimg)
+        npimg = np.minimum(1, np.maximum(0, (npimg + 0.5)))
+        npimg = npimg.transpose((1, 2, 0))
+        ax1.imshow(npimg)
+        ax1.axis(&#34;off&#34;)
+        ax1.set_title(str(i))
+        ax1.set_xticklabels([])
+        ax1.set_yticklabels([])
+
+    plt.savefig(&#34;myimage.png&#34;, dpi=100)
+    plt.tight_layout()
+    plt.show()
+    pass</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.plot_filters_single_channel"><code class="name flex">
+<span>def <span class="ident">plot_filters_single_channel</span></span>(<span>t)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_filters_single_channel(t):
+
+    # kernels depth * number of kernels
+    nplots = t.shape[0] * t.shape[1]
+    ncols = 12
+
+    nrows = 1 + nplots // ncols
+    # convert tensor to numpy image
+    npimg = np.array(t.numpy(), np.float32)
+
+    count = 0
+    fig = plt.figure(figsize=(ncols, nrows))
+
+    # looping through all the kernels in each channel
+    for i in range(t.shape[0]):
+        for j in range(t.shape[1]):
+            count += 1
+            ax1 = fig.add_subplot(nrows, ncols, count)
+            npimg = np.array(t[i, j].numpy(), np.float32)
+            npimg = (npimg - np.mean(npimg)) / np.std(npimg)
+            npimg = np.minimum(1, np.maximum(0, (npimg + 0.5)))
+            ax1.imshow(npimg)
+            ax1.set_title(str(i) + &#34;,&#34; + str(j))
+            ax1.axis(&#34;off&#34;)
+            ax1.set_xticklabels([])
+            ax1.set_yticklabels([])
+
+    plt.tight_layout()
+    plt.show()
+    pass</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.plot_filters_single_channel_big"><code class="name flex">
+<span>def <span class="ident">plot_filters_single_channel_big</span></span>(<span>t)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_filters_single_channel_big(t):
+
+    # setting the rows and columns
+    nrows = t.shape[0] * t.shape[2]
+    ncols = t.shape[1] * t.shape[3]
+
+    npimg = np.array(t.numpy(), np.float32)
+    npimg = npimg.transpose((0, 2, 1, 3))
+    npimg = npimg.ravel().reshape(nrows, ncols)
+
+    npimg = npimg.T
+
+    fig, ax = plt.subplots(figsize=(ncols / 10, nrows / 200))
+    imgplot = sns.heatmap(  # noqa F841
+        npimg, xticklabels=False, yticklabels=False, cmap=&#34;gray&#34;, ax=ax, cbar=False
+    )
+    pass</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.plot_weights"><code class="name flex">
+<span>def <span class="ident">plot_weights</span></span>(<span>model, layer_num, single_channel=True, collated=False)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_weights(model, layer_num, single_channel=True, collated=False):
+
+    # extracting the model features at the particular layer number
+    layer = model.features[layer_num]
+
+    # checking whether the layer is convolution layer or not
+    if isinstance(layer, nn.Conv2d):
+        # getting the weight tensor data
+        weight_tensor = model.features[layer_num].weight.data
+
+        if single_channel:
+            if collated:
+                plot_filters_single_channel_big(weight_tensor)
+            else:
+                plot_filters_single_channel(weight_tensor)
+
+        else:
+            if weight_tensor.shape[1] == 3:
+                plot_filters_multi_channel(weight_tensor)
+            else:
+                print(
+                    &#34;Can only plot weights with three channels with single channel = False&#34;
+                )
+    else:
+        print(&#34;Can only visualize layers which are convolutional&#34;)</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.random_poke_generator"><code class="name flex">
+<span>def <span class="ident">random_poke_generator</span></span>(<span>num_element=5, poke_size=3)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def random_poke_generator(num_element=5, poke_size=3):
+    # fix random seed to fix output numbers
+    samples = (50 - poke_size - 1) * random.sample(size=2 * num_element) + 1
+    samples = np.reshape(samples.astype(int), (2, num_element))
+    return samples</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.self_center_distance_cartesian"><code class="name flex">
+<span>def <span class="ident">self_center_distance_cartesian</span></span>(<span>start, target)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def self_center_distance_cartesian(start, target):
+    return [target[0] - start[0], target[1] - start[1]]
+    # return [start[0] - target[0], start[1] - target[1]]</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.self_center_distance_polar"><code class="name flex">
+<span>def <span class="ident">self_center_distance_polar</span></span>(<span>start, target)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def self_center_distance_polar(start, target):
+
+    x = target[0] - start[0]
+    y = target[1] - start[1]
+    # if x == 0 and y != 0:
+    #     return [math.pi/2 * y/abs(y), math.sqrt(math.pow(x, 2) + math.pow(y, 2))]
+    # elif x == 0 and y == 0:
+    #     return [0, 0]
+    # # if x is -0.0:
+    #     return [-math.pi, math.sqrt(math.pow(x, 2) + math.pow(y, 2))]
+    # elif x is 0.0:
+    #     return [math.pi, math.sqrt(math.pow(x, 2) + math.pow(y, 2))]
+    # else:
+    return [math.atan2(y, x), math.sqrt(math.pow(x, 2) + math.pow(y, 2))]</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.world_center_distance_cartesian"><code class="name flex">
+<span>def <span class="ident">world_center_distance_cartesian</span></span>(<span>target)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def world_center_distance_cartesian(target):
+    vector = coordinate_shift(*target)
+    return vector</code></pre>
+</details>
+</dd>
+<dt id="ego_allo_rnns.utils.utils.world_center_distance_polar"><code class="name flex">
+<span>def <span class="ident">world_center_distance_polar</span></span>(<span>target)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def world_center_distance_polar(target):
+
+    vector = coordinate_shift(*target)
+    # if vector[0] == 0 and vector[1] != 0:
+    #     return [math.pi/2 * vector[1]/abs(vector[1]), math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2))]
+    # elif vector[0] == 0 and vector[1] == 0:
+    #     return [0, 0]
+    # # elif vector[0] is -0.0:
+    # #     print(&#39;is 0.0&#39;)
+    # #     return [-math.pi, math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2))]
+    # # elif vector[0] is 0.0:
+    # #     print(&#39;is 0.0&#39;)
+    # #     return [math.pi, math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2))]
+    # else:
+    return [
+        math.atan2(vector[1], vector[0]),
+        math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2)),
+    ]</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ego_allo_rnns.utils" href="index.html">ego_allo_rnns.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="ego_allo_rnns.utils.utils.RSA_input_generate" href="#ego_allo_rnns.utils.utils.RSA_input_generate">RSA_input_generate</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.RSA_order_input_generate" href="#ego_allo_rnns.utils.utils.RSA_order_input_generate">RSA_order_input_generate</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.RSA_predict" href="#ego_allo_rnns.utils.utils.RSA_predict">RSA_predict</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.RSA_random_input_generate" href="#ego_allo_rnns.utils.utils.RSA_random_input_generate">RSA_random_input_generate</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.circum" href="#ego_allo_rnns.utils.utils.circum">circum</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.coordinate_shift" href="#ego_allo_rnns.utils.utils.coordinate_shift">coordinate_shift</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.distance_difference" href="#ego_allo_rnns.utils.utils.distance_difference">distance_difference</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.fit_transform" href="#ego_allo_rnns.utils.utils.fit_transform">fit_transform</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.float_points_in_circum" href="#ego_allo_rnns.utils.utils.float_points_in_circum">float_points_in_circum</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.front_frame" href="#ego_allo_rnns.utils.utils.front_frame">front_frame</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.get_angle" href="#ego_allo_rnns.utils.utils.get_angle">get_angle</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.input_frame" href="#ego_allo_rnns.utils.utils.input_frame">input_frame</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.input_label" href="#ego_allo_rnns.utils.utils.input_label">input_label</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.label_unification" href="#ego_allo_rnns.utils.utils.label_unification">label_unification</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.occlusion" href="#ego_allo_rnns.utils.utils.occlusion">occlusion</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.ordered_circle_poke_generator" href="#ego_allo_rnns.utils.utils.ordered_circle_poke_generator">ordered_circle_poke_generator</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.ordered_front_frame" href="#ego_allo_rnns.utils.utils.ordered_front_frame">ordered_front_frame</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.ordered_xy_poke_generator" href="#ego_allo_rnns.utils.utils.ordered_xy_poke_generator">ordered_xy_poke_generator</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.plot_filters_multi_channel" href="#ego_allo_rnns.utils.utils.plot_filters_multi_channel">plot_filters_multi_channel</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.plot_filters_single_channel" href="#ego_allo_rnns.utils.utils.plot_filters_single_channel">plot_filters_single_channel</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.plot_filters_single_channel_big" href="#ego_allo_rnns.utils.utils.plot_filters_single_channel_big">plot_filters_single_channel_big</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.plot_weights" href="#ego_allo_rnns.utils.utils.plot_weights">plot_weights</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.random_poke_generator" href="#ego_allo_rnns.utils.utils.random_poke_generator">random_poke_generator</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.self_center_distance_cartesian" href="#ego_allo_rnns.utils.utils.self_center_distance_cartesian">self_center_distance_cartesian</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.self_center_distance_polar" href="#ego_allo_rnns.utils.utils.self_center_distance_polar">self_center_distance_polar</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.world_center_distance_cartesian" href="#ego_allo_rnns.utils.utils.world_center_distance_cartesian">world_center_distance_cartesian</a></code></li>
+<li><code><a title="ego_allo_rnns.utils.utils.world_center_distance_polar" href="#ego_allo_rnns.utils.utils.world_center_distance_polar">world_center_distance_polar</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

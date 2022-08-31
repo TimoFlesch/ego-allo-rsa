@@ -15,9 +15,14 @@ import seaborn as sns
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
-from utils.utils import RSA_predict, front_frame, input_frame, input_label, occlusion
 
-from ego_allo_rnns.models.ffwd import ConvNet
+from ego_allo_rnns.utils.utils import (
+    RSA_predict,
+    front_frame,
+    input_frame,
+    input_label,
+    occlusion,
+)
 
 pi = math.pi
 
@@ -235,42 +240,3 @@ def rsa_visualization(rsa, label_type):
         plt.show()
 
     pass
-
-
-if __name__ == "__main__":
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    generate_example_image()
-    # ---------------------------------------------------------------------------- #
-    #                                  load model                                  #
-    # ---------------------------------------------------------------------------- #
-
-    model = ConvNet()
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-    checkpoint = torch.load("model.pt")
-    model.load_state_dict(checkpoint["model_state_dict"])
-    optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-    epoch = checkpoint["epoch"]
-
-    model2 = ConvNet()
-    optimizer2 = torch.optim.Adam(model.parameters(), lr=0.001)
-    checkpoint2 = torch.load("model2.pt")
-    model2.load_state_dict(checkpoint2["model_state_dict"])
-    optimizer2.load_state_dict(checkpoint2["optimizer_state_dict"])
-    epoch2 = checkpoint2["epoch"]
-
-    # ---------------------------------------------------------------------------- #
-    #                               occlusion heatmap                              #
-    # ---------------------------------------------------------------------------- #
-    model = model.float()
-    heatmap = occlusion(model, occ_size=10, occ_stride=5)
-    print(heatmap.shape)
-    print(heatmap)
-    imgplot = sns.heatmap(heatmap, xticklabels=False, yticklabels=False)
-    figure = imgplot.get_figure()
-    figure.savefig("./figures/svm_conf.png", dpi=400)
-
-    # ---------------------------------------------------------------------------- #
-    #                                 RSA analysis                                 #
-    # ---------------------------------------------------------------------------- #
-    rsa = RSA_predict(model, model2)
-    rsa_visualization(rsa, "Cartesian")
