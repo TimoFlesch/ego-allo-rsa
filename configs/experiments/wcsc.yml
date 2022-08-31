@@ -1,0 +1,24 @@
+data:
+    n_train: 10000
+    n_test: 2000
+    size_ds: 40
+    input_type: "WC"
+    output_type: "SC"
+
+architecture:
+    input_size: 1600
+    hidden_size: 100
+    nonlinearity: "tanh"
+    output_size: 2
+
+hyperparams:
+  lr: 0.001
+
+training:
+  log_dir: "./logs/"
+  checkpoint_dir: "./checkpoints/"
+  run_id: "run_WCSC"
+  n_epochs: 300
+  batch_size: 256
+  log_interval: 1
+  criterion: "MSE"
