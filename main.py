@@ -31,13 +31,15 @@ args = vars(args)  # type: ignore
 
 def collect_runs(args: dict):  # type: ignore
     seeds = np.random.randint(1, 99999, size=args["n_runs"])
-    for cfg_id in args["configs"]:
-        try:
-            cfg = load_config(cfg_id=cfg_id, cfg_path="./configs/experiments/")
-        except FileNotFoundError:
-            cfg = load_config(cfg_id=cfg_id.lower(), cfg_path="./configs/experiments/")
 
+    for cfg_id in args["configs"]:
         for seed, r_id in zip(seeds, range(args["n_runs"])):
+            try:
+                cfg = load_config(cfg_id=cfg_id, cfg_path="./configs/experiments/")
+            except FileNotFoundError:
+                cfg = load_config(
+                    cfg_id=cfg_id.lower(), cfg_path="./configs/experiments/"
+                )
             cfg["training"]["run_id"] = cfg["training"]["run_id"] + "_" + str(r_id + 1)
             cfg["data"]["random_seed"] = seed
             model, results = run_training(cfg)
