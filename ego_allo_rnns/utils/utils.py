@@ -26,7 +26,11 @@ def random_poke_generator(num_element=5, poke_size=3):
 
 
 def front_frame(
-    random_seed: int = 20, frame_amount: int = 20, show_target: bool = True
+    random_seed: int = 20,
+    frame_amount: int = 20,
+    show_target: bool = True,
+    start_coordinate: np.ndarray = None,
+    target_coordinate: np.ndarray = None,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """generates frames with stimulus information
         Each stimulus consists of an image with start and target ports
@@ -45,8 +49,17 @@ def front_frame(
     poke_size = 5
     frames = np.zeros((frame_amount, front_frame_size, front_frame_size))
     frames[:][:][:] = 0.1
-    start_poke_coordinate = random_poke_generator(frame_amount, poke_size=poke_size)
-    target_poke_coordinate = random_poke_generator(frame_amount, poke_size=poke_size)
+    if start_coordinate is None:
+        start_poke_coordinate = random_poke_generator(frame_amount, poke_size=poke_size)
+    else:
+        start_poke_coordinate = start_coordinate
+
+    if target_coordinate is None:
+        target_poke_coordinate = random_poke_generator(
+            frame_amount, poke_size=poke_size
+        )
+    else:
+        target_poke_coordinate = target_coordinate
 
     for num in range(0, frame_amount):
         empty_poke_coordinate = random_poke_generator(poke_size=poke_size)
