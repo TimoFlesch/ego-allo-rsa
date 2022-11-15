@@ -42,10 +42,10 @@ repos:
 #   hooks:
 #   - id: mypy
 #     args: [--ignore-missing-imports]
--   repo: https://github.com/kynan/nbstripout
-    rev: 0.5.0
-    hooks:
-    -   id: nbstripout
+# -   repo: https://github.com/kynan/nbstripout
+#     rev: 0.5.0
+#     hooks:
+#     -   id: nbstripout
 
 
 
