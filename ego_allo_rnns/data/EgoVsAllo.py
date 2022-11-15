@@ -237,6 +237,7 @@ def make_conditiontable() -> pd.DataFrame:
         "target_loc_y",
         "target_loc_color",
         "target_direction_color",
+        "start_loc_color",
     ]
     rows = []
     for i, dc in enumerate(direction_colors):  # for each motion direction
@@ -254,10 +255,11 @@ def make_conditiontable() -> pd.DataFrame:
                     y_locs[idces[1]],
                     location_colors[idces[1]],
                     dc,
+                    location_colors[idces[0]],
                 ]
             )
     df = pd.DataFrame(np.asarray(rows), columns=header)
-    cs = header[:-2]
+    cs = header[:-3]
     cs
     for c in cs:
         df[c] = df[c].astype("int32")
