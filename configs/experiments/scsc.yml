@@ -4,6 +4,7 @@ data:
     size_ds: 40
     input_type: "SC"
     output_type: "SC"
+    random_seed: 20
 
 architecture:
     input_size: 1600
