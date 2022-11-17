@@ -32,7 +32,7 @@ def make_datasets(
         random_seed (int, optional): seed for rng. Defaults to 200.
         n_frames (int, optional): number of frames per trial. Defaults to 11.
 
-        target_frame (tuple, optional): Frame that shows target. Defaults to U(2,4).
+        target_frame (tuple, optional): Frame that shows target. Defaults to U(4,4).
 
     Returns:
         Tuple[TensorDataset, TensorDataset]: training and test sets with labels
@@ -188,7 +188,32 @@ def make_testset_from_conditions(
     )
     data_test = TensorDataset(x_test, y_test)
 
-    return df, data_test
+    # slightly redundant, but makes life later easier:
+    # add labels for start loc, target loc and target direction
+    start_location = torch.tensor(
+        input_label(start_poke_coordinate, start_poke_coordinate, "WC", label_type),
+        dtype=torch.float,
+    )
+    target_location = torch.tensor(
+        input_label(start_poke_coordinate, target_poke_coordinate, "WC", label_type),
+        dtype=torch.float,
+    )
+    target_direction = torch.tensor(
+        input_label(start_poke_coordinate, target_poke_coordinate, "SC", label_type),
+        dtype=torch.float,
+    )
+    labels = np.concatenate((start_location, target_location, target_direction), axis=1)
+    column_names = [
+        "start_loc_label_x",
+        "start_loc_label_y",
+        "target_loc_label_x",
+        "target_loc_label_y",
+        "target_dir_label_x",
+        "target_dir_label_y",
+    ]
+
+    df2 = pd.DataFrame(labels, columns=column_names)
+    return pd.concat([df, df2], axis=1), data_test
 
 
 def make_conditiontable() -> pd.DataFrame:
@@ -265,3 +290,46 @@ def make_conditiontable() -> pd.DataFrame:
         df[c] = df[c].astype("int32")
 
     return df
+
+
+def wrapper_make_testset_from_conditions(
+    n_chunks: int = 10,
+    input_type: str = "WC",
+    output_type: str = "WC",
+    label_type: str = "Cartesian",
+    n_frames: int = 11,
+    target_frame: int = (4, 4),
+    size_ds: int = 40,
+) -> Tuple[pd.DataFrame, TensorDataset]:
+    """wrapper for make_testset_from_conditions.
+       generates n_chunks of 24 test trials with unique random seeds (determines distractor ports in x_in)
+
+    Args:
+        n_chunks (int, optional): number of data chunks to generate. Defaults to 10.
+
+    Returns:
+        Tuple[pd.DataFrame, TensorDataset]: df with variable descriptors and actualy xy data
+    """
+
+    rnd_seeds = np.random.choice(range(99999), n_chunks, replace=False)
+    dfs = []
+    xys = []
+    for rs in rnd_seeds:
+        df, xy = make_testset_from_conditions(
+            random_seed=rs,
+            input_type=input_type,
+            output_type=output_type,
+            label_type=label_type,
+            n_frames=n_frames,
+            target_frame=target_frame,
+            size_ds=size_ds,
+        )
+        dfs.append(df)
+        xys.append(xy)
+    df = pd.concat(dfs, axis=0)
+    xy = TensorDataset(
+        torch.concat([xi.tensors[0] for xi in xys], axis=0),
+        torch.concat([xi.tensors[1] for xi in xys], axis=0),
+    )
+
+    return df, xy
