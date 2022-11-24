@@ -31,6 +31,8 @@ def front_frame(
     show_target: bool = True,
     start_coordinate: np.ndarray = None,
     target_coordinate: np.ndarray = None,
+    bbox_intensity: float = 0.1,
+    noise_intensity: float = 0.2,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """generates frames with stimulus information
         Each stimulus consists of an image with start and target ports
@@ -48,7 +50,7 @@ def front_frame(
     front_frame_size = 50
     poke_size = 5
     frames = np.zeros((frame_amount, front_frame_size, front_frame_size))
-    frames[:][:][:] = 0.1
+    frames[:][:][:] = bbox_intensity
     if start_coordinate is None:
         start_poke_coordinate = random_poke_generator(frame_amount, poke_size=poke_size)
     else:
@@ -69,7 +71,7 @@ def front_frame(
                 for poke_column in range(poke_size):
                     frames[num][empty_poke_coordinate[0][index] + poke_row][
                         empty_poke_coordinate[1][index] + poke_column
-                    ] = 0.2
+                    ] = noise_intensity
         # add start poke
         for poke_row in range(poke_size):
             for poke_column in range(poke_size):

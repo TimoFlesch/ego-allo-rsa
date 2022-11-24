@@ -119,6 +119,10 @@ def make_testset_from_conditions(
     n_frames: int = 11,
     target_frame: int = (4, 4),
     size_ds: int = 40,
+    sorting_mode: int = 0,
+    sortby: str = None,
+    bbox_intensity: float = 0.1,
+    noise_intensity: float = 0.2,
 ) -> Tuple[pd.DataFrame, TensorDataset]:
     """creates test dataset based on user-specified condition table
 
@@ -139,13 +143,17 @@ def make_testset_from_conditions(
         size_ds, interpolation=T.InterpolationMode.NEAREST, antialias=False
     )
 
-    df = df or make_conditiontable()
+    df = df or make_conditiontable(sorting_mode=sorting_mode)
+    if sortby:
+        df.sort_values(sortby, inplace=True)
 
     start_coord = df[["start_loc_y", "start_loc_x"]].to_numpy().T
     target_coord = df[["target_loc_y", "target_loc_x"]].to_numpy().T
     n_trials = start_coord.shape[1]
 
     frames, start_poke_coordinate, target_poke_coordinate = front_frame(
+        bbox_intensity=bbox_intensity,
+        noise_intensity=noise_intensity,
         random_seed=random_seed,
         frame_amount=n_trials,
         start_coordinate=start_coord,
@@ -158,6 +166,8 @@ def make_testset_from_conditions(
     x_test_notarget = resize(torch.tensor(x_test_notarget)).numpy()
 
     frames, start_poke_coordinate, target_poke_coordinate = front_frame(
+        bbox_intensity=bbox_intensity,
+        noise_intensity=noise_intensity,
         random_seed=random_seed,
         frame_amount=n_trials,
         start_coordinate=start_coord,
@@ -216,7 +226,7 @@ def make_testset_from_conditions(
     return pd.concat([df, df2], axis=1), data_test
 
 
-def make_conditiontable() -> pd.DataFrame:
+def make_conditiontable(sorting_mode: int = 0) -> pd.DataFrame:
     """creates condition table that covers 24 combinations of target directions and locations
 
     Returns:
@@ -289,6 +299,24 @@ def make_conditiontable() -> pd.DataFrame:
     for c in cs:
         df[c] = df[c].astype("int32")
 
+    if sorting_mode == 1:
+        # sort trials left to right (rather than top to bottom)
+        mapping_locations = {0: 1, 1: 4, 2: 0, 3: 3, 4: 6, 5: 2, 6: 5}
+        mapping_directions = {0: 2, 1: 4, 2: 0, 3: 5, 4: 1, 5: 3}
+        df["start_loc_id"] = df["start_loc_id"].map(mapping_locations).astype("int32")
+        df["target_loc_id"] = df["target_loc_id"].map(mapping_locations).astype("int32")
+        df["target_direction_id"] = (
+            df["target_direction_id"].map(mapping_directions).astype("int32")
+        )
+    elif sorting_mode == 2:
+        # sort locations left to right, directions along circle
+        mapping_locations = {0: 1, 1: 4, 2: 0, 3: 3, 4: 6, 5: 2, 6: 5}
+        mapping_directions = {0: 1, 1: 2, 2: 0, 3: 3, 4: 5, 5: 4}
+        df["start_loc_id"] = df["start_loc_id"].map(mapping_locations).astype("int32")
+        df["target_loc_id"] = df["target_loc_id"].map(mapping_locations).astype("int32")
+        df["target_direction_id"] = (
+            df["target_direction_id"].map(mapping_directions).astype("int32")
+        )
     return df
 
 
